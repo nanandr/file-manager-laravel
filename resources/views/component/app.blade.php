@@ -9,11 +9,12 @@
     <script src="{{asset('js/jquery.js')}}"></script> 
     <script src="{{asset('js/popper.js')}}"></script> 
     <script src="{{asset('js/bootstrap')}}.bundle.js"></script>
+    <script src="https://kit.fontawesome.com/a76dfacc76.js" crossorigin="anonymous"></script>
     <title>File Manager</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('smk1.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <div class="container pt-2">
+    <div class="container px-0 pt-2">
         @yield('nav')
         @yield('content')
     </div>

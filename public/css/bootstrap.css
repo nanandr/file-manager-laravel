@@ -24,7 +24,7 @@
   --info: #17a2b8;
   --warning: #ffc107;
   --danger: #dc3545;
-  --light: #f8f9fa;
+  --light: #efefef;
   --dark: #343a40;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
@@ -160,7 +160,6 @@ a {
 
 a:hover {
   color: #0056b3;
-  text-decoration: underline;
 }
 
 a:not([href]):not([class]) {
@@ -6844,7 +6843,7 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #efefef !important;
 }
 
 a.bg-light:hover, a.bg-light:focus,

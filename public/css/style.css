@@ -1,0 +1,23 @@
+::-webkit-scrollbar{
+    height: 5px;
+}
+::-webkit-scrollbar-track{
+    background: #efefef; 
+}
+::-webkit-scrollbar-thumb{
+    background: #919191;
+}
+::-webkit-scrollbar-thumb:hover{
+    cursor: pointer;
+}
+
+.card-inline{
+height:168px;
+width:1577px;
+display: inline-block;
+overflow-y: hidden
+}
+
+.nav-btn:hover{
+    background-color: #efefef;
+}

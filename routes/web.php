@@ -14,3 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'LoginController@index');
+Route::get('logout', 'LoginController@logout')->name('logout');
+
+Route::get('home', 'HomeController@index')->name('home');
