@@ -24,7 +24,7 @@
         </div>
 
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <a><img src="{{asset('img/icon_menu.png')}}" alt="menu" width="30" height="30" class="mt-1"></a>
+            <a><i class="fa-solid fa-bars text-secondary mt-1" alt="menu" style="font-size: 26"></i></a>
         </button>
         
         <div class="collapse navbar-collapse py-2 pr-1" id="navbarSupportedContent">

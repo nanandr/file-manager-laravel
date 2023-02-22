@@ -8,7 +8,7 @@
     background: #919191;
 }
 ::-webkit-scrollbar-thumb:hover{
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .card-inline{
@@ -20,4 +20,21 @@ overflow-y: hidden
 
 .nav-btn:hover{
     background-color: #efefef;
+}
+
+.shadow-hover:hover{
+    transform: translate(0, -1px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
+}
+
+.btn-upload{
+    width: 72;
+    height: 72;
+    position: fixed;
+    bottom: 24px;
+    right: 32px;
+    background-color: #ff0055;
+    color: white !important;
+    box-sizing: border-box;
+    font-size: 16px;
 }
