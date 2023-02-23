@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Folder extends Model
 {
     use HasFactory;
+    protected $table = 'folders';
+    protected $primaryKey = 'id_folder';
+
+    protected $fillable = [
+        'name',
+        'route',
+        'type',
+        'parent',
+        'created_at',
+        'updated_at'
+    ];
 }
