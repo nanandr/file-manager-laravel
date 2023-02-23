@@ -16,80 +16,7 @@
             </div>
         </form>
 
-        <div class="mb-2">
-            <hr>
-            <div class="d-flex align-items-center">
-                <h5>Recent Files</h5>
-                <a href="" title="View on Table" class="ml-auto">
-                    <i class="fa-solid fa-angle-down text-dark mr-2" style="font-size: 26"></i>
-                </a>
-            </div>
-            <hr>
-            <div class="table-responsive">
-                <div class="row d-flex flex-row px-2 card-inline pt-1 mb-2">
-                    <div class="card shadow-sm shadow-hover mx-2" style="width: 140px; padding: 0px">
-                        <a href="#" class="text-dark">
-                            <img src="{{ asset('img/icon_doc.png') }}" class="col-sm-12 bg-light">
-                            <h6 class="px-2 pt-1">Modul Laravel.docx</h6>
-                        </a>
-                    </div>
-                    <div class="card shadow-sm shadow-hover mx-2" style="width: 140px; padding: 0px">
-                        <a href="#" class="text-dark">
-                            <img src="{{ asset('img/icon_pdf.png') }}" class="col-sm-12 bg-light">
-                            <h6 class="px-2 pt-1">Buku IPA XI.pdf</h6>
-                        </a>
-                    </div>
-                    <div class="card shadow-sm shadow-hover mx-2" style="width: 140px; padding: 0px">
-                        <a href="#" class="text-dark">
-                            <img src="{{ asset('img/icon_exc.png') }}" class="col-sm-12 bg-light">
-                            <h6 class="px-2 pt-1">Modul Laravel.docx</h6>
-                        </a>
-                    </div>
-                    <div class="card shadow-sm shadow-hover mx-2" style="width: 140px; padding: 0px">
-                        <a href="#" class="text-dark">
-                            <img src="{{ asset('img/icon_ppt.png') }}" class="col-sm-12 bg-light">
-                            <h6 class="px-2 pt-1">Modul Laravel.docx</h6>
-                        </a>
-                    </div>
-                    <div class="card shadow-sm shadow-hover mx-2" style="width: 140px; padding: 0px">
-                        <a href="#" class="text-dark">
-                            <img src="{{ asset('favicon.ico') }}" class="col-sm-12 bg-light">
-                            <h6 class="px-2 pt-1">Modul Laravel.docx</h6>
-                        </a>
-                    </div>
-                    <div class="card shadow-sm shadow-hover mx-2" style="width: 140px; padding: 0px">
-                        <a href="#" class="text-dark">
-                            <img src="{{ asset('favicon.ico') }}" class="col-sm-12 bg-light">
-                            <h6 class="px-2 pt-1">Modul Laravel.docx</h6>
-                        </a>
-                    </div>
-                    <div class="card shadow-sm shadow-hover mx-2" style="width: 140px; padding: 0px">
-                        <a href="#" class="text-dark">
-                            <img src="{{ asset('favicon.ico') }}" class="col-sm-12 bg-light">
-                            <h6 class="px-2 pt-1">Modul Laravel.docx</h6>
-                        </a>
-                    </div>
-                    <div class="card shadow-sm shadow-hover mx-2" style="width: 140px; padding: 0px">
-                        <a href="#" class="text-dark">
-                            <img src="{{ asset('favicon.ico') }}" class="col-sm-12 bg-light">
-                            <h6 class="px-2 pt-1">Modul Laravel.docx</h6>
-                        </a>
-                    </div>
-                    <div class="card shadow-sm shadow-hover mx-2" style="width: 140px; padding: 0px">
-                        <a href="#" class="text-dark">
-                            <img src="{{ asset('favicon.ico') }}" class="col-sm-12 bg-light">
-                            <h6 class="px-2 pt-1">Modul Laravel.docx</h6>
-                        </a>
-                    </div>
-                    <div class="card shadow-sm shadow-hover mx-2" style="width: 140px; padding: 0px">
-                        <a href="#" class="text-dark">
-                            <img src="{{ asset('favicon.ico') }}" class="col-sm-12 bg-light">
-                            <h6 class="px-2 pt-1">10.docx</h6>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('component/recent')
 
         <div>
             <hr>
@@ -98,7 +25,7 @@
                     <li class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="text-dark d-flex align-items-center">
                             <h5 class="pr-2">Your Files</h5>
-                            <i class="fa-solid fa-angle-down text-dark mr-2" style="font-size: 26"></i>
+                            <i class="fa-solid fa-angle-down text-dark mr-2 angle" style="font-size: 26"></i>
                         </a>
                         <div class="dropdown-menu">
                             <a href="#" class="dropdown-item {{ (request()->is('buku')) ? 'active' : ''}}">Shared Files</a>
@@ -107,13 +34,19 @@
                     </li>
                 </ul>
 
-                <div class="row px-3 ml-auto">
+                <div class="row px-3 ml-auto d-flex align-items-center">
                     <a href="" title="View on Table">
-                        <i class="fa-solid fa-bars text-secondary mr-2" style="font-size: 26"></i>
+                        <i class="fa-solid fa-bars text-secondary mr-3" style="font-size: 22"></i>
                     </a>
                     <a href="" title="View on Grid">
-                        <i class="fa-solid fa-grip text-secondary ml-2" style="font-size: 26"></i>
+                        <i class="fa-solid fa-grip text-secondary" style="font-size: 26"></i>
                     </a>
+
+                    <button type="button" class="btn-add shadow-sm shadow-hover border py-2 px-5 row ml-3 mr-0" title="Upload File or Create Folder">
+                        <div class="row align-items-center">
+                            <h6 class="m-0">New</h6><i class="fa-solid fa-add ml-2" style="font-size: 16"></i>
+                        </div>
+                    </button>
                 </div>
 
             </div>
@@ -242,7 +175,9 @@
             </div>    
         </div>            
     </div>
-    <div class="btn-upload rounded-circle d-flex justify-content-center align-items-center shadow shadow-hover">
+    <div class="btn-add-mobile rounded-circle shadow shadow-hover
+     {{-- d-flex justify-content-center align-items-center --}}
+     ">
         <a href="" style="text-decoration: none; color: white;">
             <i class="fa-solid fa-plus" style="font-size: 32"></i>
         </a>

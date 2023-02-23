@@ -6783,13 +6783,13 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #007bff !important;
+  background-color: #ff0055 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #0062cc !important;
+  background-color: #ff0055 !important;
 }
 
 .bg-secondary {
@@ -10292,10 +10292,10 @@ a.text-dark:hover, a.text-dark:focus {
     size: a3;
   }
   body {
-    min-width: 992px !important;
+    min-width: 1080px !important;
   }
   .container {
-    min-width: 992px !important;
+    min-width: 1080px !important;
   }
   .navbar {
     display: none;

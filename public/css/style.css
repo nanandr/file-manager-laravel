@@ -1,21 +1,62 @@
 ::-webkit-scrollbar{
     height: 5px;
+    width: 5px;
 }
 ::-webkit-scrollbar-track{
     background: #efefef; 
 }
 ::-webkit-scrollbar-thumb{
     background: #919191;
+    border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover{
     cursor: pointer !important;
 }
+@media only screen and (max-width: 800px) {
+    .nav-profile{
+        display: none !important;
+    }
+    .btn-add{
+        display: none !important;
+    }
+}
+@media only screen and (min-width: 800px){
+    .btn-add-mobile{
+        display: none !important;
+    }
+}
+
+.responsive{
+    overflow-x: auto;
+}
+
+.angle:hover{
+    transform: scale(1.1);
+}
+.angle::after{
+    transform: rotate(180deg);
+}
 
 .card-inline{
-height:168px;
-width:1577px;
-display: inline-block;
-overflow-y: hidden
+    width: 180px;
+    padding-top: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.card-img{
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+}
+
+.inline-group > .row {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.inline-group > .row > .card-inline {
+    display: inline-block;
 }
 
 .nav-btn:hover{
@@ -27,13 +68,24 @@ overflow-y: hidden
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2) !important;
 }
 
-.btn-upload{
+.btn-add{
+    display: flex;
+    flex-direction: row;
+}
+.btn-add:hover{
+    background: #ff0055 !important;
+    color: white;
+}
+.btn-add-mobile{
     width: 72;
     height: 72;
     position: fixed;
     bottom: 24px;
     right: 32px;
+    display: flex;
     background-color: #ff0055;
+    align-items: center;
+    justify-content: center;
     color: white !important;
     box-sizing: border-box;
     font-size: 16px;
