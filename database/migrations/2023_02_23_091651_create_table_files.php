@@ -13,20 +13,19 @@ class CreateTableFiles extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('files');
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id_file');
-            $table->unsignedInteger('id_user');
+            $table->unsignedInteger('id_user')->nullable();
             $table->string('name');
             $table->string('route');
             $table->string('type');
-            $table->unsignedInteger('parent');
+            $table->integer('size')->nullable();
+            $table->unsignedInteger('parent')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign("id_user")->references("id_user")->on("users")
             ->onDelete("cascade")->onUpdate("cascade");
-
             $table->foreign("parent")->references("id_folder")->on("folders")
             ->onDelete("cascade")->onUpdate("cascade");
         });

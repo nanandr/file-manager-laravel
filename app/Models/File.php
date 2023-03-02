@@ -12,10 +12,12 @@ class File extends Model
     protected $primaryKey = "id_file";
 
     protected $fillable = [
+        'id_user',
         'name',
         'route',
         'type',
         'parent',
+        'size',
         'created_at',
         'updated_at'
     ];

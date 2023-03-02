@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableFolders extends Migration
+class CreateTableSharedFolders extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,15 @@ class CreateTableFolders extends Migration
      */
     public function up()
     {
-        Schema::create('folders', function (Blueprint $table) {
-            $table->increments('id_folder');
+        Schema::create('shared_folders', function (Blueprint $table) {
+            $table->increments('id_shared_folder');
             $table->unsignedInteger('id_user')->nullable();
-            $table->string('name');
-            $table->string('route');
-            $table->integer('size')->nullable();
-            $table->unsignedInteger('parent')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+            $table->unsignedInteger('id_folder')->nullable();
+            $table->string('access');
 
             $table->foreign("id_user")->references("id_user")->on("users")
             ->onDelete("cascade")->onUpdate("cascade");
-            $table->foreign("parent")->references("id_folder")->on("folders")
+            $table->foreign("id_folder")->references("id_folder")->on("folders")
             ->onDelete("cascade")->onUpdate("cascade");
         });
     }
@@ -37,6 +33,6 @@ class CreateTableFolders extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('folders');
+        Schema::dropIfExists('table_shared_folders');
     }
 }

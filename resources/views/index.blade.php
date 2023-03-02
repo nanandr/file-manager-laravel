@@ -23,13 +23,13 @@
             <div class="d-flex align-items-center">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a href="#" data-toggle="dropdown" class="text-dark d-flex align-items-center">
+                        <a href="{{ route('home') }}" data-toggle="dropdown" class="text-dark d-flex align-items-center">
                             <h5 class="pr-2">Your Files</h5>
                             <i class="fa-solid fa-angle-down text-dark mr-2 angle" style="font-size: 26"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item {{ (request()->is('buku')) ? 'active' : ''}}">Shared Files</a>
-                            <a href="#" class="dropdown-item {{ (request()->is('siswa')) ? 'active' : ''}}">Trash</a>
+                            <a href="share" class="dropdown-item">Shared Files</a>
+                            <a href="trash" class="dropdown-item">Trash</a>
                         </div>
                     </li>
                 </ul>
@@ -65,106 +65,7 @@
                         <tr>
                             <td class="">
                                 <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel.docx</strong>
+                                <strong>Modul Laravel</strong>
                             </td>
                             <td>20 Februari 2023</td>
                             <td>Word Document</td>

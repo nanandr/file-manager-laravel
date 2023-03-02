@@ -13,7 +13,7 @@
     <title>File Manager</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 {{ (request()->is('login')) ? 'bg-light' : ''}}">
     <div class="container px-0 pt-2">
         @yield('nav')
         @yield('content')
