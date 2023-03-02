@@ -9,6 +9,7 @@
     <div class="inline-group px-3 collapse" id="collapseRecent">
         <div class="row pt-2 pb-3">
             {{-- limit to 10 --}}
+            {{-- foreach --}}
             <div class="card card-inline mx-2 shadow-sm shadow-hover">
                 <a href="#" class="text-dark d-flex flex-column" style="padding: 0px">
                     <img src="{{ asset('img/icon_doc.png') }}" class="bg-light card-img px-5 py-4">

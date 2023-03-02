@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('login', 'LoginController@index')->name('login');
-Route::post('login/validating', 'LoginController@validating')->name('checklogin');
+Route::get('register', 'LoginController@register')->name('register');
+Route::post('login/validating', 'LoginController@logValidate')->name('checklogin');
+Route::post('register/validating', 'LoginController@regValidate')->name('checkregister');
 
 Route::middleware('auth')->group(function(){
     Route::get('home', 'HomeController@index')->name('home');
+    Route::get('folder/{route}', 'HomeController@inFolder');
     Route::get('logout', 'LoginController@logout')->name('logout');
 
 });

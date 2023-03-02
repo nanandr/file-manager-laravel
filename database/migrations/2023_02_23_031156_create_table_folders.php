@@ -18,7 +18,6 @@ class CreateTableFolders extends Migration
             $table->unsignedInteger('id_user')->nullable();
             $table->string('name');
             $table->string('route');
-            $table->integer('size')->nullable();
             $table->unsignedInteger('parent')->nullable();
             $table->timestamps();
             $table->softDeletes();

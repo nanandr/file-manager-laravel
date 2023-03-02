@@ -3,7 +3,7 @@
     @extends('component/nav')
 @endsection
 @section('content')
-    <div class="pt-2 col-sm-12">
+    <div class="pt-2 col-sm-12 min-vh-100 ">
         <form class="form-group shadow-sm shadow-hover bg-light" action="#">
             <div class="d-flex border px-2 d-flex align-items-center" style="height: 50px">
                 <input class="border-0 bg-light mr-auto col-sm-11" style="outline: none;" type="text" name="keyword" id="search" placeholder="Search.." autocomplete="off">
@@ -62,23 +62,55 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="">
-                                <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                <strong>Modul Laravel</strong>
-                            </td>
-                            <td>20 Februari 2023</td>
-                            <td>Word Document</td>
-                            <td>2.1 MB</td>
-                        </tr>
+                        @if(isset($parent))
+                            <tr>
+                                <td colspan="4">
+                                    <a href="{{ url('folder/' . $parent->route) }}"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>
+                                </td>
+                            </tr>
+                        @elseif(!isset($parent) && !request()->is('home'))
+                            <tr>
+                                <td colspan="4">
+                                    <a href="{{ url('home') }}" class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>
+                                </td>
+                            </tr>
+                        @endif
+
+                        {{-- foreach folder --}}
+                        @foreach ($folders as $r)
+                            <tr>
+                                <td>
+                                    <a href="{{ url('folder/' . $r->route) }}" class="text-dark">
+                                        <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
+                                        <strong>{{ $r->name }}</strong>
+                                    </a>
+                                </td>
+                                <td>{{ $r->updated_at }}</td>
+                                <td>Folder</td>
+                                <td></td>
+                            </tr>                            
+                        @endforeach
+
+                        {{-- foreach file --}}
+                        @foreach ($files as $r)
+                            <tr>
+                                <td>
+                                    <a href="file/" class="text-dark">
+                                        <img src="{{ asset('img/icon_doc.png') }}" width="30" height="30" class="mb-1 mr-1">
+                                        <strong>My Document.docx</strong>
+                                    </a>
+                                </td>
+                                <td>20 Februari 2023</td>
+                                <td>Word Document</td>
+                                <td>2.1 MB</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>    
         </div>            
     </div>
-    <div class="btn-add-mobile rounded-circle shadow shadow-hover
-     {{-- d-flex justify-content-center align-items-center --}}
-     ">
+    <div class="btn-add-mobile rounded-circle shadow shadow-hover">
         <a href="" style="text-decoration: none; color: white;">
             <i class="fa-solid fa-plus" style="font-size: 32"></i>
         </a>

@@ -13,7 +13,7 @@ class LoginController extends Controller
     public function index(){
         return view('login');
     }
-    public function validating(Request $request){
+    public function logValidate(Request $request){
         $data = [
             'email' => $request->input('email'),
             'password' => $request->input('password'),
@@ -24,6 +24,48 @@ class LoginController extends Controller
         else{
             Session::flash('error', 'Wrong Email/Password');
             return redirect('login');
+        }
+    }
+
+    public function register(){
+        return view('register');
+    }
+    public function regValidate(Request $request){
+        $proceed = false;
+        $icon = "default-profile.png";
+        $data = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ];
+        if($request->input('password') == $request->input('confirm_password')){
+            if(User::where('username', $request->username)->count() > 0){
+                Session::flash('error', 'Username already used');
+            }
+            else{
+                if(User::where('email', $request->email)->count() > 0){
+                    Session::flash('error', 'Email already used');
+                }
+                else{
+                    User::create([
+                        'full_name' => $request->full_name,
+                        'username' => $request->username,
+                        'email' => $request->email,
+                        'password' => Hash::make($request->password),
+                    ]);
+                    if(Auth::Attempt($data)){
+                        $proceed = true;
+                    }
+                }
+            }
+        }
+        else{
+            Session::flash('error', "Password doesn't match");
+        }
+        if($proceed){
+            return redirect('home');
+        }
+        else{
+            return redirect('register');
         }
     }
 

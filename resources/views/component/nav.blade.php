@@ -11,7 +11,7 @@
             <li class="nav-item dropdown">
                 <a class="d-flex align-items-center text-dark justify-content-end" style="cursor: pointer;" data-toggle="dropdown">
                     <p class="m-0 nav-profile">{{ Auth::user()->full_name }}</p>
-                    <img src="{{ asset('img/profiletest.png') }}" width="38" height="38" class="rounded-circle d-inline-block align-top ml-1 border">
+                    <img src="{{ asset('img/'.Auth::user()->icon_route) }}" width="38" height="38" class="rounded-circle d-inline-block align-top ml-1 border">
                 </a>
                 {{-- <a href="" class="btn text-primary dropdown-toggle mr-2 col-sm-12" data-toggle="dropdown">{{Auth::user()->namapetugas}}</a> --}}
                 <div class="dropdown-menu dropdown-menu-right text-right">

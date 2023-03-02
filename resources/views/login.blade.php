@@ -21,7 +21,7 @@
                             <input type="password" name="password" class="form-control" placeholder="Password" required="">
                         <button type="submit" class="btn btn-primary btn-block col-sm-12 my-3">Login</button>
                         <hr>
-                        <p class="text-center">Don't Have an Account? <a href="/register" class="text-primary">Register</a> Now!</p>
+                        <p class="text-center">Don't Have an Account? <a href="{{ route('register') }}" class="text-primary">Register</a> Now!</p>
                     </form>
                 </div>
             </div>

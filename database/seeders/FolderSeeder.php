@@ -17,10 +17,9 @@ class FolderSeeder extends Seeder
     public function run()
     {
         Folder::create([
+            'name' => 'Folder 3',
+            'route' => str_replace ('/', '', Hash::make('Folder 1')),
             'id_user' => 1,
-            'name' => 'Tugas Kelas XI',
-            'route' => Hash::make('Tugas Kelas XI'),
-            'size' => 3102912,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
