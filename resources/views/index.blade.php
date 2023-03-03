@@ -5,6 +5,7 @@
 @section('content')
     <div class="pt-2 col-sm-12 min-vh-100 ">
         <form class="form-group shadow-sm shadow-hover bg-light" action="#">
+            {{ csrf_field() }}
             <div class="d-flex border px-2 d-flex align-items-center" style="height: 50px">
                 <input class="border-0 bg-light mr-auto col-sm-11" style="outline: none;" type="text" name="keyword" id="search" placeholder="Search.." autocomplete="off">
                 <button class="border-0 ml-auto">
@@ -42,11 +43,21 @@
                         <i class="fa-solid fa-grip text-secondary" style="font-size: 26"></i>
                     </a>
 
-                    <button type="button" class="btn-add shadow-sm shadow-hover border py-2 px-5 row ml-3 mr-0" title="Upload File or Create Folder">
+                    <button data-toggle="dropdown" type="button" class="btn-add shadow-sm shadow-hover border py-2 px-5 row ml-3 mr-0" title="Upload File or Create Folder">
                         <div class="row align-items-center">
                             <h6 class="m-0">New</h6><i class="fa-solid fa-add ml-2" style="font-size: 16"></i>
                         </div>
                     </button>
+                    <div class="dropdown-menu dropdown-menu-right text-right">
+                        <button data-target="#folderModal" type="button" data-toggle="modal" class="dropdown-item pl-5">
+                            Create Folder
+                        </button>
+                        <button data-target="#fileModal" type="button" data-toggle="modal" class="dropdown-item pl-5">
+                            Upload File
+                        </button>
+                    </div>
+
+                    @include('component/form')
                 </div>
 
             </div>
@@ -111,7 +122,7 @@
         </div>            
     </div>
     <div class="btn-add-mobile rounded-circle shadow shadow-hover">
-        <a href="" style="text-decoration: none; color: white;">
+        <a style="text-decoration: none; color: white;">
             <i class="fa-solid fa-plus" style="font-size: 32"></i>
         </a>
     </div>

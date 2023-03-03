@@ -16,6 +16,7 @@ class File extends Model
         'name',
         'route',
         'type',
+        'id_user',
         'parent',
         'size',
         'created_at',

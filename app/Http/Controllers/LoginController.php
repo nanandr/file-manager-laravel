@@ -6,10 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use AuthenticatesUsers;
 use Session;
 
 class LoginController extends Controller
 {
+    protected function authenticated(){
+        if(Auth::check()){
+            return redirect('home');
+        }
+        else{
+            return redirect('login');
+        }
+    }
+
     public function index(){
         return view('login');
     }

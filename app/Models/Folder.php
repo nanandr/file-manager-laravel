@@ -15,6 +15,7 @@ class Folder extends Model
         'name',
         'route',
         'type',
+        'id_user',
         'parent',
         'created_at',
         'updated_at'
