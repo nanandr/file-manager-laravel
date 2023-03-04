@@ -4,24 +4,12 @@
 @endsection
 @section('content')
     <div class="pt-2 col-sm-12 min-vh-100 ">
-        <form class="form-group shadow-sm shadow-hover bg-light" action="#">
-            {{ csrf_field() }}
-            <div class="d-flex border px-2 d-flex align-items-center" style="height: 50px">
-                <input class="border-0 bg-light mr-auto col-sm-11" style="outline: none;" type="text" name="keyword" id="search" placeholder="Search.." autocomplete="off">
-                <button class="border-0 ml-auto">
-                    <i class="fa-solid fa-close text-secondary"></i>
-                </button>
-                <button class="border-0 ml-auto">
-                    <i class="fa-solid fa-magnifying-glass text-secondary"></i>
-                </button>
-            </div>
-        </form>
-
+        @include('component/search')
         @include('component/recent')
-
         <div>
             <hr>
             <div class="d-flex align-items-center">
+
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a href="{{ route('home') }}" data-toggle="dropdown" class="text-dark d-flex align-items-center">
@@ -49,76 +37,22 @@
                         </div>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right text-right">
-                        <button data-target="#folderModal" type="button" data-toggle="modal" class="dropdown-item pl-5">
+                        <button data-target="#folderModal" type="button" data-toggle="modal" class="dropdown-item">
                             Create Folder
                         </button>
-                        <button data-target="#fileModal" type="button" data-toggle="modal" class="dropdown-item pl-5">
+                        <button data-target="#fileModal" type="button" data-toggle="modal" class="dropdown-item">
                             Upload File
                         </button>
                     </div>
 
                     @include('component/form')
-                </div>
 
+                </div>
             </div>
             <hr>
-            <div class="table-responsive mb-5 shadow">
-                <table class="table table-bordered-x table-hover" style="min-width: 620px">
-                    <thead class="bg-light">
-                        <tr>
-                            <th>Name</th>
-                            <th>Last Modified</th>
-                            <th>Type</th>
-                            <th>Size</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if(isset($parent))
-                            <tr>
-                                <td colspan="4">
-                                    <a href="{{ url('folder/' . $parent->route) }}"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>
-                                </td>
-                            </tr>
-                        @elseif(!isset($parent) && !request()->is('home'))
-                            <tr>
-                                <td colspan="4">
-                                    <a href="{{ url('home') }}" class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>
-                                </td>
-                            </tr>
-                        @endif
 
-                        {{-- foreach folder --}}
-                        @foreach ($folders as $r)
-                            <tr>
-                                <td>
-                                    <a href="{{ url('folder/' . $r->route) }}" class="text-dark">
-                                        <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
-                                        <strong>{{ $r->name }}</strong>
-                                    </a>
-                                </td>
-                                <td>{{ $r->updated_at }}</td>
-                                <td>Folder</td>
-                                <td></td>
-                            </tr>                            
-                        @endforeach
-
-                        {{-- foreach file --}}
-                        @foreach ($files as $r)
-                            <tr>
-                                <td>
-                                    <a href="file/" class="text-dark">
-                                        <img src="{{ asset('img/icon_doc.png') }}" width="30" height="30" class="mb-1 mr-1">
-                                        <strong>My Document.docx</strong>
-                                    </a>
-                                </td>
-                                <td>20 Februari 2023</td>
-                                <td>Word Document</td>
-                                <td>2.1 MB</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>    
+            @include('component/table')
+        
         </div>            
     </div>
     <div class="btn-add-mobile rounded-circle shadow shadow-hover">

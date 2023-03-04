@@ -94,3 +94,7 @@
 .container-form{
     min-height: 100vh;
 }
+
+.img-cover{
+    object-fit: cover;
+}

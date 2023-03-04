@@ -12,8 +12,8 @@ use App\Models\Folder;
 class HomeController extends Controller
 {
     public function index(){
-        $folders = Folder::where('id_user', Auth::user()->id_user)->whereNull('parent')->get();
-        $files = File::where('id_user', Auth::user()->id_user)->whereNull('parent')->get();
+        $folders = Folder::where('id_user', Auth::user()->id_user)->whereNull('parent')->orderBy('name')->get();
+        $files = File::where('id_user', Auth::user()->id_user)->whereNull('parent')->orderBy('name')->get();
         $recent = File::orderBy('updated_at', 'DESC')->limit(10)->get();
 
         return view('index', ['folders' => $folders, 'files' => $files, 'recent' => $recent]);
@@ -26,11 +26,15 @@ class HomeController extends Controller
             return redirect('home');
         }
         else{
-            $folders = Folder::where('id_user', Auth::user()->id_user)->where('parent', $id->id_folder)->get();
-            $files = File::where('id_user', Auth::user()->id_user)->where('parent', $id->parent)->get();
+            $folders = Folder::where('id_user', Auth::user()->id_user)->where('parent', $id->id_folder)->orderBy('name')->get();
+            $files = File::where('id_user', Auth::user()->id_user)->where('parent', $id->id_folder)->orderBy('name')->get();
             $recent = File::orderBy('updated_at', 'DESC')->limit(10)->get();
     
             return view('index', ['folders' => $folders, 'files' => $files, 'recent' => $recent, 'parent' => $parent, 'current' => $id]);
         }
+    }
+
+    public function viewFile($id){
+        return response()->file('uploads/'.$id);
     }
 }
