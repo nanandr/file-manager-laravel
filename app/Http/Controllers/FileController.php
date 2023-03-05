@@ -10,6 +10,7 @@ use App\User;
 use App\Models\File;
 use App\Models\Folder;
 use Carbon\Carbon;
+use File as FileStorage;
 
 class FileController extends Controller
 {
@@ -57,4 +58,24 @@ class FileController extends Controller
     }
 
     //for edit delete etc, use return back();
+
+    public function delete($route){
+        $file = File::where('route', $route)->first();
+        $file->delete();
+        FileStorage::delete('uploads/'.$file->route);
+        return redirect()->back();
+    }
+
+    public function hide($route){
+        $file = File::where('route', $route)->first();
+        $file->hide = "true";
+        $file->save();
+        return redirect()->back();
+    }
+    public function unhide($route){
+        $file = File::where('route', $route)->first();
+        $file->hide = "false";
+        $file->save();
+        return redirect()->back();
+    }
 }

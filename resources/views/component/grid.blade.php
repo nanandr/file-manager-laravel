@@ -18,6 +18,7 @@
             </a>
         </div>
     @endforeach
+    
     @foreach ($files as $r)
         <div class="card card-inline mx-2 my-2 shadow-sm shadow-hover">
             <a href="{{ url('file/' . $r->route) }}" class="text-dark d-flex flex-column" style="padding: 0px">

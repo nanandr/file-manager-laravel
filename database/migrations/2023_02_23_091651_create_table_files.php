@@ -20,6 +20,7 @@ class CreateTableFiles extends Migration
             $table->string('route');
             $table->string('type');
             $table->integer('size')->nullable();
+            $table->string('hide')->default('false');
             $table->unsignedInteger('parent')->nullable();
             $table->timestamps();
             $table->softDeletes();

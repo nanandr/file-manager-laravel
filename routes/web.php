@@ -28,11 +28,14 @@ Route::middleware('auth')->group(function(){
 
     Route::post('create/folder', 'FolderController@create');
     Route::put('create/folder/{id}', 'FolderController@createInFolder');
-    Route::put('edit/folder/{id}', 'FolderController@edit');
+    Route::put('rename/folder/{id}', 'FolderController@edit');
     Route::get('delete/folder/{id}', 'FolderController@delete');
 
     Route::post('create/file', 'FileController@create');
     Route::put('create/file/{id}', 'FileController@createInFolder');
-    Route::put('edit/file/{id}', 'FileController@edit');
+    Route::put('rename/file/{id}', 'FileController@edit');
     Route::get('delete/file/{id}', 'FileController@delete');
+
+    Route::get('hide/{id}', 'FileController@hide');
+    Route::get('unhide/{id}', 'FileController@unhide');
 });

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use App\User;
 use App\Models\Folder;
+use App\Models\File;
 use Carbon\Carbon;
 
 class FolderController extends Controller
@@ -33,5 +34,16 @@ class FolderController extends Controller
             'updated_at' => Carbon::now(),
         ]);
         return redirect('home');
+    }
+
+    public function edit($route, Request $request){
+        $file = Folder::where('route', $route)->first();
+        $file->name = $request->name;
+        $file->save();
+        return redirect()->back();
+    }
+
+    public function delete($route){
+        return redirect()->back();
     }
 }

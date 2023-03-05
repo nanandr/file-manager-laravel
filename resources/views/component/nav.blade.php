@@ -11,9 +11,8 @@
             <li class="nav-item dropdown">
                 <a class="d-flex align-items-center text-dark justify-content-end" style="cursor: pointer;" data-toggle="dropdown">
                     <p class="m-0 nav-profile">{{ Auth::user()->full_name }}</p>
-                    <img src="{{ asset('img/'.Auth::user()->icon_route) }}" width="38" height="38" class="rounded-circle d-inline-block align-top ml-1 border">
+                    <img src="{{ asset('profiles/'.Auth::user()->icon_route) }}" width="38" height="38" class="rounded-circle d-inline-block align-top ml-1 border">
                 </a>
-                {{-- <a href="" class="btn text-primary dropdown-toggle mr-2 col-sm-12" data-toggle="dropdown">{{Auth::user()->namapetugas}}</a> --}}
                 <div class="dropdown-menu dropdown-menu-right text-right">
                     <button data-target="#" type="button" data-toggle="modal" class="dropdown-item pl-5">
                         Edit Profile
@@ -21,8 +20,6 @@
                     <a href="{{ route('logout') }}" class="dropdown-item pl-5" onclick="return confirm('Apakah anda yakin akan logout?')">
                         Logout
                     </a>
-                    {{-- <button data-target="#editPetugas{{ Auth::user()->idpetugas }}" type="button" data-toggle="modal" class="dropdown-item">Edit Profile</button> --}}
-                    {{-- <a href="{{ route('logout') }}" class="dropdown-item" onclick="return confirm('Apakah anda yakin akan logout?')">Logout</a> --}}
                 </div>
             </li>
         </ul>

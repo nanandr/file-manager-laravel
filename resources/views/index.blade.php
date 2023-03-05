@@ -1,4 +1,5 @@
 @extends('component/app')
+@inject('file', 'App\Http\Controllers\FunctionController')
 @section('nav')
     @extends('component/nav')
 @endsection
@@ -25,10 +26,10 @@
 
                 <div class="row px-3 ml-auto d-flex align-items-center">
                     <a href="" title="View on Table">
-                        <i class="fa-solid fa-bars text-secondary mr-3" style="font-size: 22"></i>
+                        <i class="fa-solid fa-bars text-secondary mx-1" style="font-size: 22"></i>
                     </a>
                     <a href="" title="View on Grid">
-                        <i class="fa-solid fa-grip text-secondary" style="font-size: 26"></i>
+                        <i class="fa-solid fa-grip text-secondary mx-1" style="font-size: 26"></i>
                     </a>
 
                     <button data-toggle="dropdown" type="button" class="btn-add shadow-sm shadow-hover border py-2 px-5 row ml-3 mr-0" title="Upload File or Create Folder">
@@ -45,7 +46,8 @@
                         </button>
                     </div>
 
-                    @include('component/form')
+                    @include('file/add')
+                    @include('folder/add')
 
                 </div>
             </div>

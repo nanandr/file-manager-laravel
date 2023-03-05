@@ -1,4 +1,4 @@
-<div class="table-responsive mb-5 shadow rounded border">
+<div class="table-responsive mb-5 shadow rounded border" style="min-height: 50vh">
     <table class="table table-bordered-x table-hover" style="min-width: 620px">
         <thead class="bg-light">
             <tr>
@@ -11,14 +11,14 @@
         <tbody>
             @if(isset($parent))
                 <tr>
-                    <td colspan="4">
-                        <a href="{{ url('folder/' . $parent->route) }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i>&ensp;/&ensp;{{ $current->name }}</a>
+                    <td colspan="4" class="d-flex bg-white">
+                        <a href="{{ url('folder/' . $parent->route) }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>&ensp;/&ensp;{{ $current->name }}
                     </td>
                 </tr>
             @elseif(!isset($parent) && !request()->is('home'))
                 <tr>
-                    <td colspan="4">
-                        <a href="{{ url('home') }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i>&ensp;/&ensp;{{ $current->name }}</a>
+                    <td colspan="4" class="d-flex bg-white">
+                        <a href="{{ url('home') }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>&ensp;/&ensp;{{ $current->name }}
                     </td>
                 </tr>
             @endif
@@ -27,11 +27,11 @@
             @foreach ($folders as $r)
                 <tr>
                     <td>
-                        <a href="{{ url('folder/' . $r->route) }}" class="text-dark">
+                        <a href="{{ url('folder/' . $r->route) }}" class="text-dark" title="{{ $r->name }}">
                             <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
                             <strong>
-                                {{ substr($r->name, 0, 40) }}
-                                @if (strlen($r->name) > 40)
+                                {{ substr($r->name, 0, 30) }}
+                                @if (strlen($r->name) > 30)
                                     ...
                                 @endif
                             </strong>
@@ -53,42 +53,44 @@
                                 <button data-target="#" type="button" data-toggle="modal" class="dropdown-item">
                                     Description
                                 </button>
-                                <button data-target="#" type="button" data-toggle="modal" class="dropdown-item">
+                                <button data-target="#folderEdit{{ $r->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Rename
                                 </button>
                                 <div class="dropdown-divider"></div>
-                                <a href="" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
+                                <a href="{{ url('delete/folder/' . $r->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
                                     Delete
                                 </a>
                             </div>    
                         </div>
                     </td>
-                </tr>                            
+                </tr>
+                @include('folder/edit')                            
             @endforeach
 
             {{-- foreach file --}}
             @foreach ($files as $r)
                 <tr>
                     <td>
-                        <a href="{{ url('file/' . $r->route) }}" class="text-dark">
-                            <img src="{{ asset('uploads/' . $r->route) }}" width="30" height="30" class="mb-1 mr-1 img-cover">
+                        <a href="{{ url('file/' . $r->route) }}" class="text-dark" title="{{ $r->name }}">
+                            {{-- icon goes here --}}
+                            <img src="{{ asset($file::getIcon($r->route, $r->type)) }}" width="30" height="30" class="mb-1 mr-1 img-cover">
                             <strong>
-                                {{ substr($r->name, 0, 40) }}
-                                @if (strlen($r->name) > 40)
+                                {{ substr($r->name, 0, 30) }}
+                                @if (strlen($r->name) > 30)
                                     ...
                                 @endif
                             </strong>
                         </a>
                     </td>
                     <td>{{  date('H:i:s, M d Y', strtotime($r->updated_at)) }}</td>
-                    <td>{{ $r->type }}</td>
+                    <td>{{ strtoupper($r->type) }}</td>
                     <td class="d-flex">
-                        {{ $r->size }}
+                        {{ $file->formatBytes($r->size) }}
                         <div class="dropdown ml-auto">
                             <a class="d-flex align-items-center text-dark justify-content-end" style="cursor: pointer;" data-toggle="dropdown">
                                 <i class="fa-solid fa-ellipsis-vertical px-2" style="font-size: 24"></i>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right text-right">
+                            <div class="dropdown-menu dropdown-menu-right text-right absolute">
                                 <a href="{{ asset('download/' . $r->route) }}" class="dropdown-item" target="_blank" download="{{ $r->name }}">
                                     Download
                                 </a>
@@ -99,20 +101,26 @@
                                 <button data-target="#" type="button" data-toggle="modal" class="dropdown-item">
                                     Description
                                 </button>
-                                <button data-target="#" type="button" data-toggle="modal" class="dropdown-item">
+                                <button data-target="#fileEdit{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Rename
                                 </button>
-                                <a href="" class="dropdown-item">
-                                    Hide From Recent
+                                <a class="dropdown-item"
+                                    @if($r->hide == "false")
+                                    href="{{url('hide/' . $r->route)}}">Hide
+                                    @elseif($r->hide == "true")
+                                    href="{{url('unhide/' . $r->route)}}">Unhide
+                                    @endif
+                                    From Recent
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
+                                <a href="{{ url('delete/file/' . $r->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
                                     Delete
                                 </a>
                             </div>    
                         </div>
                     </td>
                 </tr> 
+                @include('file/edit')   
             @endforeach
         </tbody>
     </table>
