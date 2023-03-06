@@ -8,7 +8,18 @@
           </button>
         </div>
         <div class="modal-body p-0 py-3 px-3">
-            description
+            Owner: {{ $r->user->full_name }}
+            <br>
+            Parent Folder:
+            @if(isset($r->folder))
+              {{ $r->folder->name }}
+            @endif
+            <hr>
+            Last Modified: {{ $r->updated_at }}
+            <br>
+            Created at: {{ $r->created_at }}
+            <hr>
+            File Size: {{ $file->formatBytes($r->size) }}
         </div>
       </div>
     </div>

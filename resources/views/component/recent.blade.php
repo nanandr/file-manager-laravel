@@ -31,7 +31,11 @@
                                     </a>
                                     <div class="dropdown-divider">
                                     </div>
-                                        <a href="" class="dropdown-item text-dark">
+                                        @if(isset($r->folder))
+                                        <a href="{{ url('folder/'.$r->folder->route) }}" class="dropdown-item text-dark">
+                                        @else
+                                        <a href="{{ url('home') }}" class="dropdown-item text-dark">
+                                        @endif
                                             Open File Location
                                         </a>
                                         <a class="dropdown-item"

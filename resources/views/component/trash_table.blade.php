@@ -1,4 +1,4 @@
-<div class="table-responsive mb-5 shadow rounded border" style="min-height: 50vh">
+<div class="table-responsive mb-5 shadow rounded border" style="min-height: 500px">
     <table class="table table-bordered-x table-hover" style="min-width: 620px">
         <thead class="bg-light">
             <tr>

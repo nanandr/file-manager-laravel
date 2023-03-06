@@ -25,4 +25,11 @@ class File extends Model
         'updated_at'
     ];
     protected $dates = ['deleted-at'];
+
+    public function folder(){
+        return $this->belongsTo('App\Models\Folder', 'parent');
+    }
+    public function user(){
+        return $this->belongsTo('App\Models\User', 'id_user');
+    }
 }
