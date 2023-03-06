@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -57,7 +58,17 @@ class FileController extends Controller
         return redirect('home');
     }
 
-    //for edit delete etc, use return back();
+    public function edit($route, Request $request){
+        $file_enc = time() . "_" . $request->name;
+        
+        $file = File::where('route', $route)->first();
+        $file->name = $request->name;
+        $file->route = $file_enc;
+        $file->save();
+
+        rename(public_path('uploads/'.$route), public_path('uploads/'.$file_enc));
+        return redirect()->back();
+    }
 
     public function delete($route){
         $file = File::where('route', $route)->first();

@@ -50,9 +50,6 @@
                                     Share
                                 </button>
                                 <div class="dropdown-divider"></div>
-                                <button data-target="#" type="button" data-toggle="modal" class="dropdown-item">
-                                    Description
-                                </button>
                                 <button data-target="#folderEdit{{ $r->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Rename
                                 </button>
@@ -71,7 +68,7 @@
             @foreach ($files as $r)
                 <tr>
                     <td>
-                        <a href="{{ url('file/' . $r->route) }}" class="text-dark" title="{{ $r->name }}">
+                        <a data-target="#fileView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
                             {{-- icon goes here --}}
                             <img src="{{ asset($file::getIcon($r->route, $r->type)) }}" width="30" height="30" class="mb-1 mr-1 img-cover">
                             <strong>
@@ -98,7 +95,7 @@
                                     Share
                                 </button>
                                 <div class="dropdown-divider"></div>
-                                <button data-target="#" type="button" data-toggle="modal" class="dropdown-item">
+                                <button data-target="#fileDesc{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Description
                                 </button>
                                 <button data-target="#fileEdit{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
@@ -121,6 +118,8 @@
                     </td>
                 </tr> 
                 @include('file/edit')   
+                @include('file/view')   
+                @include('file/desc')   
             @endforeach
         </tbody>
     </table>

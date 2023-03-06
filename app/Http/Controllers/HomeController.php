@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use PDF;
 
 use App\Models\File;
 use App\Models\Folder;
@@ -35,7 +36,8 @@ class HomeController extends Controller
         }
     }
 
-    public function viewFile($id){
+    public function view($id){
         return response()->file('uploads/'.$id);
     }
+
 }

@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function(){
     Route::put('create/file/{id}', 'FileController@createInFolder');
     Route::put('rename/file/{id}', 'FileController@edit');
     Route::get('delete/file/{id}', 'FileController@delete');
+    Route::get('view/{id}', 'HomeController@view');
 
     Route::get('hide/{id}', 'FileController@hide');
     Route::get('unhide/{id}', 'FileController@unhide');
