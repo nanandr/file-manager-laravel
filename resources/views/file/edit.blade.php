@@ -12,7 +12,7 @@
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}
                 <div class="input-group input-group col-sm-12">
-                    <input value="{{ $r->name }}" name="name" type="text" class="form-control mr-2" placeholder="File Name.." required>
+                    <input value="{{ str_replace('.'.$r->type, '', $r->name) }}" name="name" type="text" class="form-control mr-2" placeholder="File Name.." required>
                     <span class="input-group-btn">
                         <button class="btn btn-primary" type="submit">Rename</button>
                     </span>

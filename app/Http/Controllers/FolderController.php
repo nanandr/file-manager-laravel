@@ -43,6 +43,15 @@ class FolderController extends Controller
         return redirect()->back();
     }
 
+    public function trash($route){
+        return redirect()->back();
+    }
+
+
+    public function resore($route){
+        return redirect()->back();
+    }
+
     public function delete($route){
         return redirect()->back();
     }

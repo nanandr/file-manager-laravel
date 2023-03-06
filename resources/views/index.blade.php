@@ -18,8 +18,8 @@
                             <i class="fa-solid fa-angle-down text-dark mr-2 angle" style="font-size: 26"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="share" class="dropdown-item">Shared Files</a>
-                            <a href="trash" class="dropdown-item">Trash</a>
+                            <a href="{{ route('share') }}" class="dropdown-item">Shared Files</a>
+                            <a href="{{ route('trash') }}" class="dropdown-item">Trash</a>
                         </div>
                     </li>
                 </ul>

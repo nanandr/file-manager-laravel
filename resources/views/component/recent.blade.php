@@ -23,7 +23,7 @@
                             </h6>
                             <div class="dropdown ml-auto">
                                 <a class="d-flex align-items-center text-dark justify-content-end" style="cursor: pointer;" data-toggle="dropdown">
-                                    <i class="fa-solid fa-ellipsis-vertical px-2" style="font-size: 24"></i>
+                                    <i class="fa-solid fa-ellipsis-vertical pr-3" style="font-size: 20"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right text-right absolute">
                                     <a href="{{ asset('download/' . $r->route) }}" class="dropdown-item" target="_blank" download="{{ $r->name }}">

@@ -59,10 +59,12 @@ class FileController extends Controller
     }
 
     public function edit($route, Request $request){
-        $file_enc = time() . "_" . $request->name;
+        $id = File::where('route', $route)->first();
+
+        $file_enc = time() . "_" . $request->name . "." . $id->type;
         
         $file = File::where('route', $route)->first();
-        $file->name = $request->name;
+        $file->name = $request->name . "." . $id->type;
         $file->route = $file_enc;
         $file->save();
 
@@ -70,10 +72,22 @@ class FileController extends Controller
         return redirect()->back();
     }
 
-    public function delete($route){
+    public function trash($route){
         $file = File::where('route', $route)->first();
         $file->delete();
-        FileStorage::delete('uploads/'.$file->route);
+        return redirect()->back();
+    }
+
+    public function restore($route){
+        $file = File::where('route', $route);
+        $file->restore();
+        return redirect()->back();
+    }
+
+    public function delete($route){
+        $file = File::where('route', $route);
+        FileStorage::delete('uploads/'.$route);
+        $file->forceDelete();
         return redirect()->back();
     }
 

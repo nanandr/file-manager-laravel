@@ -110,7 +110,7 @@
                                     From Recent
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="{{ url('delete/file/' . $r->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
+                                <a href="{{ url('trash/file/' . $r->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
                                     Delete
                                 </a>
                             </div>    
