@@ -26,7 +26,7 @@
             </div>
             <hr>
 
-            @include('component/trash_table')
+            @include('trash/table')
         
         </div>            
     </div>

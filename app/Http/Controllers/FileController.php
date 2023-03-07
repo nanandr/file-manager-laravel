@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\User;
+use App\Models\User as UserModel;
 use App\Models\File;
 use App\Models\Folder;
+use App\Models\sharedFile;
 use Carbon\Carbon;
 use File as FileStorage;
 
@@ -88,6 +90,19 @@ class FileController extends Controller
         $file = File::where('route', $route);
         FileStorage::delete('uploads/'.$route);
         $file->forceDelete();
+        return redirect()->back();
+    }
+
+    public function share($route, Request $request){
+        $this->validate($request, ['access' => 'required']);
+        $file = File::where('route', $route)->first();
+        $user = UserModel::where('username', $request->username)->first();
+
+        sharedFile::create([
+            'id_user' => $user->id_user,
+            'id_file' => $file->id_file,
+            'access' => $request->access,
+        ]);
         return redirect()->back();
     }
 

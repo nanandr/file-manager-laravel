@@ -11,7 +11,7 @@ class sharedFolder extends Model
 
     protected $table = 'shared_folders';
     protected $primaryKey = 'id_shared_folder';
-    protected $fillable = ['id_user', 'id_folder', 'access'];
+    protected $fillable = ['id_user', 'id_folder', 'access', 'created_at', 'updated_at'];
     
     public function file(){
         return $this->belongsTo('App\Models\Folder', 'id_folder');

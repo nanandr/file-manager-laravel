@@ -18,6 +18,7 @@ class CreateTableSharedFolders extends Migration
             $table->unsignedInteger('id_user')->nullable();
             $table->unsignedInteger('id_folder')->nullable();
             $table->string('access');
+            $table->timestamps();
 
             $table->foreign("id_user")->references("id_user")->on("users")
             ->onDelete("cascade")->onUpdate("cascade");

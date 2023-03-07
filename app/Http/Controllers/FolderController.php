@@ -45,8 +45,8 @@ class FolderController extends Controller
     }
 
     public function trash($route){
-        $folder = Folder::where('route', $route)->first();
-        File::where('parent', $folder->id_folder)->delete();
+        $folder = Folder::withTrashed()->where('route', $route)->first();
+        File::withTrashed()->where('parent', $folder->id_folder)->delete();
         $folder->delete();
         return redirect()->back();
     }
