@@ -47,6 +47,15 @@ class FunctionController extends Controller
         }
         return $icon;
     }
+
+    public function getType($type){
+        $link = 'notImage';
+        if($type == 'jpg' || $type == 'svg' || $type == 'ico' || $type == 'png' || $type == 'gif' || $type == 'jpeg' || $type == 'webp'){
+            $link = 'image';
+        }
+        return $link;
+    }
+
     public function getCard($type){
         $icon = 'bg-light card-img';
         if($type == 'jpg' || $type == 'svg' || $type == 'ico' || $type == 'png' || $type == 'gif' || $type == 'jpeg' || $type == 'webp'){

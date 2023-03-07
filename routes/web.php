@@ -44,4 +44,6 @@ Route::middleware('auth')->group(function(){
 
     Route::get('hide/{route}', 'FileController@hide');
     Route::get('unhide/{route}', 'FileController@unhide');
+
+    Route::put('edit/user/{id}', 'LoginController@edit');
 });

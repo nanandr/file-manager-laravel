@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body p-0 pb-3">
-            <form action="{{ url('rename/file/'. $r->route) }} " method="post" class="form form-inline col-sm-12">
+            <form action="{{ url('rename/file/'. $r->route) }}" method="post" class="form form-inline col-sm-12">
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}
                 <div class="input-group input-group col-sm-12">

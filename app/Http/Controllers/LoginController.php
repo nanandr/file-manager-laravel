@@ -58,9 +58,13 @@ class LoginController extends Controller
                     Session::flash('error', 'Email already used');
                 }
                 else{
-                    if($request->hasFile('file')){
+                    if($request->file('file') != null){
+                        $this->validate($request, [
+                            'file' => 'required|file|image|mimes:jpeg,png,jpg',
+                        ]);
+
                         $file = $request->file('file');
-                        $file_enc = time() . "_" . $file;
+                        $file_enc = time() . "_" . $file->getClientOriginalName();
                         
                         User::create([
                             'full_name' => $request->full_name,
@@ -70,7 +74,7 @@ class LoginController extends Controller
                             'icon_route' => $file_enc,
                         ]);
 
-                        $file::move('profiles', $file_enc);
+                        $file->move('profiles', $file_enc);
                     }
                     else{
                         User::create([
@@ -80,6 +84,7 @@ class LoginController extends Controller
                             'password' => Hash::make($request->password),
                         ]);
                     }
+
                     if(Auth::Attempt($data)){
                         $proceed = true;        
                     }
@@ -89,7 +94,6 @@ class LoginController extends Controller
         else{
             Session::flash('error', "Password doesn't match");
         }
-
         
         if($proceed){
             return redirect('home');
@@ -97,6 +101,37 @@ class LoginController extends Controller
         else{
             return redirect('register');
         }
+    }
+
+    public function edit($id, Request $request){
+        $user = User::find($id);
+        $user->full_name = $request->full_name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+
+        if($request->file('icon_route') != null){
+            $this->validate($request, [
+                'icon_route' => 'file|image|mimes:jpeg,png,jpg',
+            ]);
+
+            $file = $request->file('icon_route');
+            $file_enc = time() . "_" . $file->getClientOriginalName();
+            if($user->icon_route != 'default-profile.png'){
+                FileStorage::delete('profiles/'.$user->icon_route);
+            }
+            $file->move('profiles', $file_enc);
+            $user->icon_route = $file_enc;
+        }
+        if($request->oldpassword != null && $request->newpassword != null){
+            if(Hash::check($request->oldpassword, Auth::user()->password)){
+                $user->password = Hash::make($request->newpassword);
+                Auth::logout();             
+                Session::flash('success', "Password changed");
+            }
+        }
+
+        $user->save();
+        return redirect()->back();
     }
 
     public function logout(){

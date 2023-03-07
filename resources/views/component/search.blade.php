@@ -10,18 +10,3 @@
         </button>
     </div>
 </form>
-<script>
-    var b = document.getElementById('close');
-    var input = document.getElementById("search");
-    b.style.display = "none";
-    
-    input.addEventListener('input', function() {
-
-    if(input.value === ""){
-        b.style.display = "none";
-    }
-    else{
-        b.style.display = "inline-block";
-    }
-    });
-</script>
