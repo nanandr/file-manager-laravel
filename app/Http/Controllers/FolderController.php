@@ -10,6 +10,7 @@ use App\User;
 use App\Models\Folder;
 use App\Models\File;
 use Carbon\Carbon;
+use File as FileStorage;
 
 class FolderController extends Controller
 {
@@ -37,22 +38,35 @@ class FolderController extends Controller
     }
 
     public function edit($route, Request $request){
-        $file = Folder::where('route', $route)->first();
-        $file->name = $request->name;
-        $file->save();
+        $folder = Folder::where('route', $route)->first();
+        $folder->name = $request->name;
+        $folder->save();
         return redirect()->back();
     }
 
     public function trash($route){
-        return redirect()->back();
-    }
-
-
-    public function resore($route){
+        $folder = Folder::where('route', $route)->first();
+        File::where('parent', $folder->id_folder)->delete();
+        $folder->delete();
         return redirect()->back();
     }
 
     public function delete($route){
+        $folder = Folder::withTrashed()->where('route', $route)->first();
+        $file = File::withTrashed()->where('parent', $folder->id_folder)->get();
+        foreach ($file as $r) {
+            FileStorage::delete('uploads/'.$r->route);
+            File::withTrashed()->where('parent', $folder->id_folder)->first()->forceDelete();
+        }
+        $folder->forceDelete();
+        return redirect()->back();
+    }
+
+    public function restore($route){
+        $getFolder = Folder::withTrashed()->where('route', $route)->first();
+
+        File::withTrashed()->where('deleted_at', $getFolder->deleted_at)->restore();
+        Folder::withTrashed()->where('deleted_at', $getFolder->deleted_at)->restore();
         return redirect()->back();
     }
 }

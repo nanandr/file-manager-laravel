@@ -11,7 +11,11 @@
             <div class="row pt-2 pb-3">
                 @foreach($recent as $r)
                     <div class="card card-inline mx-2 shadow-sm shadow-hover">
-                        <a data-target="#recentView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark d-flex flex-column" style="padding: 0px" title="{{ $r->name }}">
+                        @if($file->getType($r->type) == 'image')
+                            <a data-target="#recentView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark d-flex flex-column" style="padding: 0px" title="{{ $r->name }}">
+                        @else
+                            <a href="{{ asset('download/' . $r->route) }}" class="text-dark d-flex flex-column" style="padding: 0px" title="{{ $r->name }}" target="_blank" download="{{ $r->name }}">
+                        @endif
                             <img src="{{ asset($file::getIcon($r->route, $r->type)) }}" class="{{ $file->getCard($r->type) }}">
                         </a>
                         <div class="d-flex align-items-center">

@@ -22,8 +22,8 @@ class HomeController extends Controller
     }
 
     public function trash(){
-        $folders = Folder::onlyTrashed()->where('id_user', Auth::user()->id_user)->orderBy('name')->get();
-        $files = File::onlyTrashed()->where('id_user', Auth::user()->id_user)->orderBy('name')->get();
+        $folders = Folder::onlyTrashed()->where('id_user', Auth::user()->id_user)->where(function ($query) {$query->whereRelation('folder', 'deleted_at', null)->orWhere('parent', null);})->orderBy('name')->get();
+        $files = File::onlyTrashed()->where('id_user', Auth::user()->id_user)->where(function ($query) {$query->whereRelation('folder', 'deleted_at', null)->orWhere('parent', null);})->orderBy('name')->get();
         $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
 
         return view('trash', ['folders' => $folders, 'files' => $files, 'recent' => $recent]);

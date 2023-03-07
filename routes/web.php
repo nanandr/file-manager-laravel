@@ -31,7 +31,9 @@ Route::middleware('auth')->group(function(){
     Route::post('create/folder', 'FolderController@create');
     Route::put('create/folder/{route}', 'FolderController@createInFolder');
     Route::put('rename/folder/{route}', 'FolderController@edit');
-    Route::get('delete/folder/{route}', 'FolderController@trash');
+    Route::get('trash/folder/{route}', 'FolderController@trash');
+    Route::get('restore/folder/{route}', 'FolderController@restore');
+    Route::get('delete/folder/{route}', 'FolderController@delete');
 
     Route::post('create/file', 'FileController@create');
     Route::put('create/file/{route}', 'FileController@createInFolder');

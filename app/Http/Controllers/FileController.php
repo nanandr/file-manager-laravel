@@ -79,7 +79,7 @@ class FileController extends Controller
     }
 
     public function restore($route){
-        $file = File::where('route', $route);
+        $file = File::withTrashed()->where('route', $route);
         $file->restore();
         return redirect()->back();
     }

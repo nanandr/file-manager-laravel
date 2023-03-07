@@ -54,7 +54,7 @@
                                     Rename
                                 </button>
                                 <div class="dropdown-divider"></div>
-                                <a href="{{ url('delete/folder/' . $r->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
+                                <a href="{{ url('trash/folder/' . $r->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
                                     Delete
                                 </a>
                             </div>    

@@ -25,8 +25,8 @@
                     </td>
                     <td>{{  date('H:i:s, M d Y', strtotime($r->deleted_at)) }}</td>
                     <td colspan="2" class="text-right">
-                        <a class="btn btn-outline-success">Restore</a>
-                        <a class="btn btn-outline-danger">Delete</a>
+                        <a href="{{url('restore/folder/' . $r->route)}}" class="btn btn-outline-success">Restore</a>
+                        <a href="{{url('delete/folder/' . $r->route)}}" class="btn btn-outline-danger">Delete</a>
                     </td>
                 </tr>
                 @include('folder/edit')                            
