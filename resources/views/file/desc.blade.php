@@ -2,7 +2,12 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">{{ $r->name }}</h5>
+          <h5 class="modal-title">
+            {{ substr($r->name, 0, 60) }}
+            @if (strlen($r->name) > 60)
+              ...
+            @endif
+          </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" tabindex="-1">
             <span aria-hidden="true">&times;</span>
           </button>

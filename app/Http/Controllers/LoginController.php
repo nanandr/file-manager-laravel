@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use AuthenticatesUsers;
 use Session;
+use File as FileStorage;
 
 class LoginController extends Controller
 {
@@ -41,6 +42,7 @@ class LoginController extends Controller
         return view('register');
     }
     public function regValidate(Request $request){
+
         $proceed = false;
         $icon = "default-profile.png";
         $data = [
@@ -56,14 +58,30 @@ class LoginController extends Controller
                     Session::flash('error', 'Email already used');
                 }
                 else{
-                    User::create([
-                        'full_name' => $request->full_name,
-                        'username' => $request->username,
-                        'email' => $request->email,
-                        'password' => Hash::make($request->password),
-                    ]);
+                    if($request->hasFile('file')){
+                        $file = $request->file('file');
+                        $file_enc = time() . "_" . $file;
+                        
+                        User::create([
+                            'full_name' => $request->full_name,
+                            'username' => $request->username,
+                            'email' => $request->email,
+                            'password' => Hash::make($request->password),
+                            'icon_route' => $file_enc,
+                        ]);
+
+                        $file::move('profiles', $file_enc);
+                    }
+                    else{
+                        User::create([
+                            'full_name' => $request->full_name,
+                            'username' => $request->username,
+                            'email' => $request->email,
+                            'password' => Hash::make($request->password),
+                        ]);
+                    }
                     if(Auth::Attempt($data)){
-                        $proceed = true;
+                        $proceed = true;        
                     }
                 }
             }
@@ -71,6 +89,8 @@ class LoginController extends Controller
         else{
             Session::flash('error', "Password doesn't match");
         }
+
+        
         if($proceed){
             return redirect('home');
         }

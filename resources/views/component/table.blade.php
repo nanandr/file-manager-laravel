@@ -91,7 +91,7 @@
                                 <a href="{{ asset('download/' . $r->route) }}" class="dropdown-item" target="_blank" download="{{ $r->name }}">
                                     Download
                                 </a>
-                                <button data-target="#" type="button" data-toggle="modal" class="dropdown-item">
+                                <button data-target="#fileShare{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Share
                                 </button>
                                 <div class="dropdown-divider"></div>
@@ -119,6 +119,7 @@
                 </tr> 
                 @include('file/edit')   
                 @include('file/view')   
+                @include('file/share')   
                 @include('file/desc')   
             @endforeach
         </tbody>

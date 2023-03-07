@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <script src="{{asset('js/jquery.js')}}"></script> 
     <script src="{{asset('js/popper.js')}}"></script> 
+    <script src="{{asset('js/script.js')}}"></script> 
     <script src="{{asset('js/bootstrap')}}.bundle.js"></script>
     <script src="https://kit.fontawesome.com/a76dfacc76.js" crossorigin="anonymous"></script>
     <title>File Manager</title>

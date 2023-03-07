@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function(){
     Route::get('trash/file/{route}', 'FileController@trash');
     Route::get('restore/file/{route}', 'FileController@restore');
     Route::get('delete/file/{route}', 'FileController@delete');
+    Route::put('share/file/{route}', 'FileController@share');
     Route::get('view/{route}', 'HomeController@view');
 
     Route::get('hide/{route}', 'FileController@hide');

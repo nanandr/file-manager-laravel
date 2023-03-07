@@ -11,10 +11,10 @@
             <li class="nav-item dropdown">
                 <a class="d-flex align-items-center text-dark justify-content-end" style="cursor: pointer;" data-toggle="dropdown">
                     <p class="m-0 nav-profile">{{ Auth::user()->full_name }}</p>
-                    <img src="{{ asset('profiles/'.Auth::user()->icon_route) }}" width="38" height="38" class="rounded-circle d-inline-block align-top ml-1 border">
+                    <img src="{{ asset('profiles/'.Auth::user()->icon_route) }}" width="38" height="38" class="img-cover rounded-circle d-inline-block align-top ml-1 border">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right text-right">
-                    <button data-target="#" type="button" data-toggle="modal" class="dropdown-item pl-5">
+                    <button data-target="#editProfile" type="button" data-toggle="modal" class="dropdown-item pl-5">
                         Edit Profile
                     </button>
                     <a href="{{ route('logout') }}" class="dropdown-item pl-5" onclick="return confirm('Apakah anda yakin akan logout?')">
@@ -25,4 +25,4 @@
         </ul>
     </nav>
 </div>
-{{-- @include('petugas/edit') --}}
+@include('profile/edit')
