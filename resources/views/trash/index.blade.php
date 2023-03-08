@@ -1,7 +1,7 @@
 @extends('component/app')
 @inject('file', 'App\Http\Controllers\FunctionController')
 @section('nav')
-    @extends('component/nav')
+    @include('component/nav')
 @endsection
 @section('content')
     <div class="pt-2 col-sm-12 min-vh-100 ">

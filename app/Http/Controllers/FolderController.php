@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\User;
+use App\Models\User as UserModel;
 use App\Models\Folder;
 use App\Models\File;
+use App\Models\sharedFolder;
 use Carbon\Carbon;
 use File as FileStorage;
 
@@ -24,7 +26,7 @@ class FolderController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
-        return redirect('folder/'.$route);
+        return redirect()->back();
     }
     public function create(Request $request){
         Folder::create([
@@ -67,6 +69,19 @@ class FolderController extends Controller
 
         File::withTrashed()->where('deleted_at', $getFolder->deleted_at)->restore();
         Folder::withTrashed()->where('deleted_at', $getFolder->deleted_at)->restore();
+        return redirect()->back();
+    }
+
+    public function share($route, Request $request){
+        $this->validate($request, ['access' => 'required']);
+        $folder = Folder::where('route', $route)->first();
+        $user = UserModel::where('username', $request->username)->orWhere('email', $request->username)->first();
+
+        sharedFolder::create([
+            'id_user' => $user->id_user,
+            'id_folder' => $folder->id_folder,
+            'access' => $request->access,
+        ]);
         return redirect()->back();
     }
 }

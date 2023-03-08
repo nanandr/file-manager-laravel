@@ -35,10 +35,12 @@
                                     </a>
                                     <div class="dropdown-divider">
                                     </div>
-                                        @if(isset($r->folder))
-                                        <a href="{{ url('folder/'.$r->folder->route) }}" class="dropdown-item text-dark">
+                                        @if(isset($r->folder) && $r->folder->id_user == Auth::user()->id_user)
+                                            <a href="{{ url('folder/' . $r->folder->route) }}" class="dropdown-item text-dark">
+                                        @elseif(isset($r->folder))
+                                            <a href="{{ url('share/' . $r->folder->route) }}" class="dropdown-item text-dark">
                                         @else
-                                        <a href="{{ url('home') }}" class="dropdown-item text-dark">
+                                            <a href="{{ url('home') }}" class="dropdown-item text-dark">
                                         @endif
                                             Open File Location
                                         </a>

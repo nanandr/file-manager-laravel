@@ -7,7 +7,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body p-0 pt-3">
+        <div class="modal-body p-0 py-3">
           @if(isset($current))
             <form action="{{ url('create/file/'. $current->route) }}" method="post" class="form form-inline col-sm-12" enctype="multipart/form-data" id="upload-file">
               {{ method_field('PUT') }}

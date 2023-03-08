@@ -12,13 +12,13 @@
             @if(isset($parent))
                 <tr>
                     <td colspan="4" class="d-flex bg-white">
-                        <a href="{{ url('folder/' . $parent->route) }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>&ensp;/&ensp;{{ $current->name }}
+                        <a href="{{ url('share/' . $parent->route) }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>&ensp;/&ensp;{{ $current->name }}
                     </td>
                 </tr>
-            @elseif(!isset($parent) && !request()->is('home'))
+            @elseif(!isset($parent) && !request()->is('share'))
                 <tr>
                     <td colspan="4" class="d-flex bg-white">
-                        <a href="{{ url('home') }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>&ensp;/&ensp;{{ $current->name }}
+                        <a href="{{ url('share') }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>&ensp;/&ensp;{{ $current->name }}
                     </td>
                 </tr>
             @endif
@@ -27,7 +27,7 @@
             @foreach ($folders as $r)
                 <tr>
                     <td>
-                        <a href="{{ url('folder/' . $r->route) }}" class="text-dark" title="{{ $r->name }}">
+                        <a href="{{ url('share/' . $r->route) }}" class="text-dark" title="{{ $r->name }}">
                             <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
                             <strong>
                                 {{ substr($r->name, 0, 30) }}
@@ -46,10 +46,6 @@
                                 <i class="fa-solid fa-ellipsis-vertical px-2" style="font-size: 24"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right text-right">
-                                <button data-target="#folderShare{{ $r->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
-                                    Share
-                                </button>
-                                <div class="dropdown-divider"></div>
                                 <button data-target="#folderEdit{{ $r->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Rename
                                 </button>
@@ -96,25 +92,13 @@
                                 <a href="{{ asset('download/' . $r->route) }}" class="dropdown-item" target="_blank" download="{{ $r->name }}">
                                     Download
                                 </a>
-                                <button data-target="#fileShare{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
-                                    Share
-                                </button>
-                                <div class="dropdown-divider"></div>
                                 <button data-target="#fileDesc{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Description
                                 </button>
+                                <div class="dropdown-divider"></div>
                                 <button data-target="#fileEdit{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Rename
                                 </button>
-                                <a class="dropdown-item"
-                                    @if($r->hide == "false")
-                                    href="{{url('hide/' . $r->route)}}">Hide
-                                    @elseif($r->hide == "true")
-                                    href="{{url('unhide/' . $r->route)}}">Unhide
-                                    @endif
-                                    From Recent
-                                </a>
-                                <div class="dropdown-divider"></div>
                                 <a href="{{ url('trash/file/' . $r->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
                                     Delete
                                 </a>

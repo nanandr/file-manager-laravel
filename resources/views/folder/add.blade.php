@@ -7,7 +7,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body p-0 pt-3">
+        <div class="modal-body p-0 py-3">
           @if(isset($current))
             <form action="{{ url('create/folder/'. $current->route) }}" method="post" class="form form-inline col-sm-12">
               {{ method_field('PUT') }}

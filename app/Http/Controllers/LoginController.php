@@ -122,11 +122,11 @@ class LoginController extends Controller
             $file->move('profiles', $file_enc);
             $user->icon_route = $file_enc;
         }
+        
         if($request->oldpassword != null && $request->newpassword != null){
             if(Hash::check($request->oldpassword, Auth::user()->password)){
                 $user->password = Hash::make($request->newpassword);
                 Auth::logout();             
-                Session::flash('success', "Password changed");
             }
         }
 

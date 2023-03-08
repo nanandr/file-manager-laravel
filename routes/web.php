@@ -22,11 +22,13 @@ Route::post('register/validating', 'LoginController@regValidate')->name('checkre
 Route::middleware('auth')->group(function(){
     Route::get('home', 'HomeController@index')->name('home');
     Route::get('trash', 'HomeController@trash')->name('trash');
-    Route::get('share', 'HomeController@share')->name('share');
     Route::get('folder/{route}', 'HomeController@inFolder');
     Route::get('file/{route}', 'HomeController@viewFile');
     Route::get('folder', 'LoginController@authenticated');
     Route::get('logout', 'LoginController@logout')->name('logout');
+
+    Route::get('share', 'HomeController@share')->name('share');
+    Route::get('share/{route}', 'HomeController@shareInFolder');
 
     Route::post('create/folder', 'FolderController@create');
     Route::put('create/folder/{route}', 'FolderController@createInFolder');
@@ -34,6 +36,7 @@ Route::middleware('auth')->group(function(){
     Route::get('trash/folder/{route}', 'FolderController@trash');
     Route::get('restore/folder/{route}', 'FolderController@restore');
     Route::get('delete/folder/{route}', 'FolderController@delete');
+    Route::put('share/folder/{route}', 'FolderController@share');
 
     Route::post('create/file', 'FileController@create');
     Route::put('create/file/{route}', 'FileController@createInFolder');

@@ -38,7 +38,7 @@ class FileController extends Controller
         ]);
 
         $file->move('uploads', $file_enc);
-        return redirect('folder/'.$route);
+        return redirect()->back();
     }
     public function create(Request $request){
 
@@ -75,7 +75,7 @@ class FileController extends Controller
     }
 
     public function trash($route){
-        $file = File::where('route', $route)->first();
+        $file = File::where('route', $route);
         $file->delete();
         return redirect()->back();
     }

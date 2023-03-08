@@ -14,7 +14,6 @@ class File extends Model
     protected $primaryKey = "id_file";
 
     protected $fillable = [
-        'id_user',
         'name',
         'route',
         'type',
