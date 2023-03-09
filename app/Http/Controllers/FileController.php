@@ -97,12 +97,14 @@ class FileController extends Controller
         $this->validate($request, ['access' => 'required']);
         $file = File::where('route', $route)->first();
         $user = UserModel::where('username', $request->username)->first();
+        if(isset($user) && sharedFile::where('id_user', $user->id_user)->where('id_file', $file->id_file)->count() == 0){
+            sharedFile::create([
+                'id_user' => $user->id_user,
+                'id_file' => $file->id_file,
+                'access' => $request->access,
+            ]);
+        }
 
-        sharedFile::create([
-            'id_user' => $user->id_user,
-            'id_file' => $file->id_file,
-            'access' => $request->access,
-        ]);
         return redirect()->back();
     }
 

@@ -25,6 +25,10 @@ class File extends Model
     ];
     protected $dates = ['deleted-at'];
 
+    public function sharedFile(){
+        return $this->hasMany('App\Models\sharedFile', 'id_file');
+    }
+
     public function folder(){
         return $this->belongsTo('App\Models\Folder', 'parent');
     }

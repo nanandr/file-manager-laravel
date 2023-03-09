@@ -31,8 +31,8 @@ class HomeController extends Controller
         // $trashFolders = Folder::onlyTrashed()->where('id_user', Auth::user()->id_user)->where(function ($query) {$query->whereRelation('folder', 'deleted_at', null)->orWhere('parent', null);})->orderBy('name')->get();
         // $trashFiles = File::onlyTrashed()->where('id_user', Auth::user()->id_user)->where(function ($query) {$query->whereRelation('folder', 'deleted_at', null)->orWhere('parent', null);})->orderBy('name')->get();
         DB::statement("SET SQL_MODE=''");
-        $trashFolders = Folder::onlyTrashed()->where('id_user', Auth::user()->id_user)->groupBy('deleted_at')->orderBy('deleted_at', 'desc')->get();
-        $trashFiles = File::onlyTrashed()->where('id_user', Auth::user()->id_user)->groupBy('deleted_at')->orderBy('deleted_at', 'desc')->get();
+        $trashFolders = Folder::onlyTrashed()->where('id_user', Auth::user()->id_user)->where(function ($query) {$query->whereRelation('folder', 'deleted_at', null)->orWhere('parent', null);})->groupBy('deleted_at')->orderBy('deleted_at', 'desc')->get();
+        $trashFiles = File::onlyTrashed()->where('id_user', Auth::user()->id_user)->where(function ($query) {$query->whereRelation('folder', 'deleted_at', null)->orWhere('parent', null);})->groupBy('deleted_at')->orderBy('deleted_at', 'desc')->get();
         
         $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
 
@@ -77,6 +77,14 @@ class HomeController extends Controller
 
     public function view($route){
         return response()->file('uploads/'.$id);
+    }
+
+    public function search(Request $request){
+        $folders = Folder::where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->whereNull('parent')->orderBy('name')->get();
+        $files = File::where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->whereNull('parent')->orderBy('name')->get();
+        $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
+
+        return view('index', ['folders' => $folders, 'files' => $files, 'recent' => $recent]);
     }
 
 }

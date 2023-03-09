@@ -15,7 +15,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    <form action="{{ route('checkregister') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('checkregister') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                         {{ csrf_field() }}
                             <div class="d-block text-center mb-2">
                                 <div>
@@ -36,6 +36,7 @@
                             <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required="">
                         <button type="submit" class="btn btn-primary btn-block col-sm-12 my-3">Register</button>
                     </form>
+                    <a href="{{ url('login') }}" class="text-dark">Back</a>
                 </div>
             </div>
         </div>

@@ -98,8 +98,8 @@
                                 <button data-target="#fileDesc{{ $r->file->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Description
                                 </button>
-                                <div class="dropdown-divider"></div>
                                 @if($r->access == 'edit')
+                                    <div class="dropdown-divider"></div>
                                     <button data-target="#fileEdit{{ $r->file->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
                                         Rename
                                     </button>

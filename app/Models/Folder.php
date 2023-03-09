@@ -42,4 +42,9 @@ class Folder extends Model
     public function child_file(){
         return $this->hasMany(File::class, 'parent');
     }
+
+    public function sharedFolder(){
+        return $this->hasMany('App\Models\sharedFolder', 'id_folder');
+    }
+
 }

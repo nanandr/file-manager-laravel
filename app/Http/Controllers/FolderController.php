@@ -76,12 +76,13 @@ class FolderController extends Controller
         $this->validate($request, ['access' => 'required']);
         $folder = Folder::where('route', $route)->first();
         $user = UserModel::where('username', $request->username)->orWhere('email', $request->username)->first();
-
-        sharedFolder::create([
-            'id_user' => $user->id_user,
-            'id_folder' => $folder->id_folder,
-            'access' => $request->access,
-        ]);
+        if(sharedFolder::where('id_user', $user->id_user)->where('id_folder', $folder->id_folder)->count() == 0){
+            sharedFolder::create([
+                'id_user' => $user->id_user,
+                'id_folder' => $folder->id_folder,
+                'access' => $request->access,
+            ]);
+        }
         return redirect()->back();
     }
 }

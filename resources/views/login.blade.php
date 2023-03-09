@@ -15,7 +15,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    <form action="{{ route('checklogin') }}" method="post">
+                    <form action="{{ route('checklogin') }}" method="post" autocomplete="off">
                         {{ csrf_field() }}
                             <input type="email" name="email" class="form-control mb-2" placeholder="Example@gmail.com" required="">
                             <input type="password" name="password" class="form-control" placeholder="Password" required="">

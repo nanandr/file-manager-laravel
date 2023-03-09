@@ -32,9 +32,6 @@
                             </div>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right text-right">
-                            <button data-target="#folderModal" type="button" data-toggle="modal" class="dropdown-item">
-                                Create Folder
-                            </button>
                             <button data-target="#fileModal" type="button" data-toggle="modal" class="dropdown-item">
                                 Upload File
                             </button>

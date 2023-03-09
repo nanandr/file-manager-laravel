@@ -7,7 +7,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body p-0 pb-3">
+        <div class="modal-body p-0 py-3">
             <form action="{{ url('rename/file/'. $r->route) }}" method="post" class="form form-inline col-sm-12">
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}

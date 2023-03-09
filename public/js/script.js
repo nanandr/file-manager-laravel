@@ -1,6 +1,5 @@
 $(document).ready(function (e) {
          
-           
     $('#image').change(function(){
              
      let reader = new FileReader();

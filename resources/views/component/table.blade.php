@@ -15,7 +15,7 @@
                         <a href="{{ url('folder/' . $parent->route) }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>&ensp;/&ensp;{{ $current->name }}
                     </td>
                 </tr>
-            @elseif(!isset($parent) && !request()->is('home'))
+            @elseif(!isset($parent) && !request()->is('home') && !request()->is('search'))
                 <tr>
                     <td colspan="4" class="d-flex bg-white">
                         <a href="{{ url('home') }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>&ensp;/&ensp;{{ $current->name }}

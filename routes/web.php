@@ -27,8 +27,21 @@ Route::middleware('auth')->group(function(){
     Route::get('folder', 'LoginController@authenticated');
     Route::get('logout', 'LoginController@logout')->name('logout');
 
+    Route::get('search', 'HomeController@search');
+    Route::get('search/{route}', 'HomeController@searchInFolder');
+    // Route::get('share/search', 'HomeController@shareSearch');
+    // Route::get('share/{route}/search', 'HomeController@shareSearchInFolder');
+    // Route::get('trash/search', 'HomeController@trashSearch');
+
     Route::get('share', 'HomeController@share')->name('share');
-    Route::get('share/{route}', 'HomeController@shareInFolder');
+    
+    Route::get('share/file/{route}', 'HomeController@shareInFolder');
+    Route::get('edit/file/share/{route}/{id_user}/{access}', 'ShareController@editFileAccess');
+    Route::get('delete/folder/share/{route}/{id_user}', 'ShareController@deleteFileAccess');
+
+    Route::get('share/folder/{route}', 'HomeController@shareInFolder');
+    Route::get('edit/folder/share/{route}/{id_user}/{access}', 'ShareController@editFolderAccess');
+    Route::get('delete/folder/share/{route}/{id_user}', 'ShareController@deleteFolderAccess');
 
     Route::post('create/folder', 'FolderController@create');
     Route::put('create/folder/{route}', 'FolderController@createInFolder');
