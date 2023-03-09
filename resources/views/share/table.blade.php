@@ -27,7 +27,7 @@
             @foreach ($folders as $r)
                 <tr>
                     <td>
-                        <a href="{{ url('share/' . $r->folder->route) }}" class="text-dark" title="{{ $r->folder->name }}">
+                        <a href="{{ url('share/folder/' . $r->folder->route) }}" class="text-dark" title="{{ $r->folder->name }}">
                             <img src="{{ asset('favicon.ico') }}" width="30" height="30" class="mb-1 mr-1">
                             <strong>
                                 {{ substr($r->folder->name, 0, 30) }}

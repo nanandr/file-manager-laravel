@@ -49,6 +49,7 @@ class HomeController extends Controller
 
     public function shareInFolder($route){
         $id = Folder::where('route', $route)->first();
+        $access = sharedFolder::where('id_user', $id->id_user)->first();
         $parent = Folder::where('id_folder', $id->parent)->first();
 
         $folders = Folder::where('parent', $id->id_folder)->orderBy('name')->get();
@@ -56,7 +57,7 @@ class HomeController extends Controller
         
         $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
 
-        return view('share/index', ['folders' => $folders, 'files' => $files, 'recent' => $recent, 'parent' => $parent, 'current' => $id]);
+        return view('share/index', ['folders' => $folders, 'files' => $files, 'recent' => $recent, 'parent' => $parent, 'current' => $id, 'access' => $access]);
     }
 
     public function inFolder($route){
