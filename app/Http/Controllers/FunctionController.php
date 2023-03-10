@@ -53,6 +53,12 @@ class FunctionController extends Controller
         if($type == 'jpg' || $type == 'svg' || $type == 'ico' || $type == 'png' || $type == 'gif' || $type == 'jpeg' || $type == 'webp'){
             $link = 'image';
         }
+        else if($type == 'mp4' || $type == 'avi'){
+            $link = 'video';
+        }
+        else if($type == 'mp3' || $type == 'wav' || $type == 'm4a'){
+            $link = 'audio';
+        }
         return $link;
     }
 

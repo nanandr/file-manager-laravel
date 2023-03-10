@@ -40,10 +40,15 @@ b.style.display = "none";
 
 input.addEventListener('input', function() {
 
-if(input.value === ""){
+if(input.value == ""){
     b.style.display = "none";
 }
 else{
     b.style.display = "inline-block";
 }
 });
+
+function closeButton(){
+  document.getElementById('close').style.display = 'none';
+  document.getElementById('search').value='';
+}
