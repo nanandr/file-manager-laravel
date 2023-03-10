@@ -96,9 +96,11 @@
                                 <a href="{{ asset('download/' . $r->route) }}" class="dropdown-item" target="_blank" download="{{ $r->name }}">
                                     Download
                                 </a>
-                                <button data-target="#fileShare{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
-                                    Share
-                                </button>
+                                @if($r->id_user == Auth::user()->id_user)
+                                    <button data-target="#fileShare{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
+                                        Share
+                                    </button>                                    
+                                @endif
                                 <div class="dropdown-divider"></div>
                                 <button data-target="#fileDesc{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Description

@@ -19,6 +19,7 @@ class CreateTableSharedFiles extends Migration
             $table->unsignedInteger('id_file')->nullable();
             $table->string('access');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign("id_user")->references("id_user")->on("users")
             ->onDelete("cascade")->onUpdate("cascade");

@@ -30,9 +30,9 @@
               @foreach ($r->sharedFile as $t)
                 <div class="d-flex align-items-center py-1">
                   {{ $t->user->username }}
-                  <ul class="navbar-nav ml-auto col-sm-3 px-0">
+                  <ul class="navbar-nav ml-auto px-0">
                     <li class="nav-item dropdown">
-                      <a class="text-dark form-control col-sm-12 text-right shadow-hover" style="cursor: pointer;" data-toggle="dropdown">
+                      <a class="text-dark form-control text-right shadow-hover" style="cursor: pointer; width: 96px" data-toggle="dropdown">
                         {{ ucfirst($t->access) }}
                       </a>
                       <div class="dropdown-menu dropdown-menu-right text-right">

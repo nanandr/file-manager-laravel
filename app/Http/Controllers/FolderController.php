@@ -48,6 +48,10 @@ class FolderController extends Controller
 
     public function trash($route){
         $folder = Folder::withTrashed()->where('route', $route)->first();
+        $sharedFolder = sharedFolder::where('id_folder', $folder->id_folder);
+        if($sharedFolder->count() > 0){
+            $sharedFolder->delete();
+        }
         File::withTrashed()->where('parent', $folder->id_folder)->delete();
         $folder->delete();
         return redirect()->back();
@@ -66,6 +70,11 @@ class FolderController extends Controller
 
     public function restore($route){
         $getFolder = Folder::withTrashed()->where('route', $route)->first();
+        
+        $sharedFolder = sharedFolder::withTrashed()->where('id_folder', $getFolder->id_folder);
+        if($sharedFolder->count() > 0){
+            $sharedFolder->restore();
+        }
 
         File::withTrashed()->where('deleted_at', $getFolder->deleted_at)->restore();
         Folder::withTrashed()->where('deleted_at', $getFolder->deleted_at)->restore();

@@ -46,22 +46,21 @@
                                 <i class="fa-solid fa-ellipsis-vertical px-2" style="font-size: 24"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right text-right">
-                                <button data-target="#" type="button" data-toggle="modal" class="dropdown-item">
-                                    Share
-                                </button>
-                                <div class="dropdown-divider"></div>
-                                <button data-target="#folderEdit{{ $r->folder->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
-                                    Rename
-                                </button>
-                                <div class="dropdown-divider"></div>
-                                <a href="{{ url('trash/folder/' . $r->folder->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
-                                    Delete
-                                </a>
+                                @if($r->access == 'edit')
+                                    <div class="dropdown-divider"></div>
+                                    <button data-target="#folderEdit{{ $r->folder->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
+                                        Rename
+                                    </button>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="{{ url('trash/folder/' . $r->folder->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
+                                        Delete
+                                    </a>
+                                @endif
                             </div>    
                         </div>
                     </td>
                 </tr>
-                {{-- @include('folder/edit')                             --}}
+                {{-- @include('folder/edit')--}}
             @endforeach
 
             {{-- foreach file --}}

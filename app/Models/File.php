@@ -23,16 +23,16 @@ class File extends Model
         'created_at',
         'updated_at'
     ];
-    protected $dates = ['deleted-at'];
-
-    public function sharedFile(){
-        return $this->hasMany('App\Models\sharedFile', 'id_file');
-    }
+    protected $dates = ['deleted_at'];
 
     public function folder(){
         return $this->belongsTo('App\Models\Folder', 'parent');
     }
     public function user(){
         return $this->belongsTo('App\Models\User', 'id_user');
+    }
+
+    public function sharedFile(){
+        return $this->hasMany('App\Models\sharedFile', 'id_file');
     }
 }

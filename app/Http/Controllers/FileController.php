@@ -76,12 +76,22 @@ class FileController extends Controller
 
     public function trash($route){
         $file = File::where('route', $route);
+        $id = File::where('route', $route)->first();
+        $sharedFile = sharedFile::where('id_file', $id->id_file);
+        if($sharedFile->count() > 0){
+            $sharedFile->delete();
+        }
         $file->delete();
         return redirect()->back();
     }
 
     public function restore($route){
         $file = File::withTrashed()->where('route', $route);
+        $id = File::withTrashed()->where('route', $route)->first();
+        $sharedFile = sharedFile::withTrashed()->where('id_file', $id->id_file);
+        if($sharedFile->count() > 0){
+            $sharedFile->restore();
+        }
         $file->restore();
         return redirect()->back();
     }
