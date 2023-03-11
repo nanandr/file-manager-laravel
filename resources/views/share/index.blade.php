@@ -25,7 +25,7 @@
                 </ul>
 
                 <div class="row px-3 ml-auto d-flex align-items-center">
-                    @if(!request()->is('share') && isset($access) && $access->access == 'edit')
+                    @if(isset($access) && $access->access == 'edit')
                         <button data-toggle="dropdown" type="button" class="btn-add shadow-sm shadow-hover border py-2 px-5 row ml-3 mr-0" title="Upload File or Create Folder">
                             <div class="row align-items-center">
                                 <h6 class="m-0">New</h6><i class="fa-solid fa-add ml-2" style="font-size: 16"></i>
@@ -35,9 +35,19 @@
                             <button data-target="#fileModal" type="button" data-toggle="modal" class="dropdown-item">
                                 Upload File
                             </button>
-                        </div>                        
+                        </div>  
+                    @elseif(!isset($access) && !request()->is('share') && session('access') == 'edit')
+                        <button data-toggle="dropdown" type="button" class="btn-add shadow-sm shadow-hover border py-2 px-5 row ml-3 mr-0" title="Upload File or Create Folder">
+                            <div class="row align-items-center">
+                                <h6 class="m-0">New</h6><i class="fa-solid fa-add ml-2" style="font-size: 16"></i>
+                            </div>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right text-right">
+                            <button data-target="#fileModal" type="button" data-toggle="modal" class="dropdown-item">
+                                Upload File
+                            </button>
+                        </div>                
                     @endif
-
                     @include('file/add')
                     @include('folder/add')
 

@@ -34,7 +34,7 @@
                         <button data-target="#folderModal" type="button" data-toggle="modal" class="dropdown-item">
                             Create Folder
                         </button>
-                        <button data-target="#fileModal" type="button" data-toggle="modal" class="dropdown-item">
+                        <button data-target="#fileModal" type="button" data-toggle="modal" class="dropdown-item" onclick="reset($('#clear'))">
                             Upload File
                         </button>
                     </div>

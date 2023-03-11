@@ -20,8 +20,9 @@
                         @else
                             <a href="{{ asset('download/' . $r->route) }}" class="text-dark d-flex flex-column" style="padding: 0px" title="{{ $r->name }}" target="_blank" download="{{ $r->name }}">
                         @endif
-
+                        
                         <img src="{{ asset($file::getIcon($r->route, $r->type)) }}" class="{{ $file->getCard($r->type) }}">
+                        
                         </a>
                         <div class="d-flex align-items-center">
                             <h6 class="pt-2 px-2">

@@ -40,24 +40,23 @@
                     <td>{{  date('H:i:s, M d Y', strtotime($r->folder->updated_at)) }}</td>
                     <td>Folder</td>
                     <td class="d-flex">
-                        
-                        <div class="dropdown ml-auto">
-                            <a class="d-flex align-items-center text-dark justify-content-end" style="cursor: pointer;" data-toggle="dropdown">
-                                <i class="fa-solid fa-ellipsis-vertical px-2" style="font-size: 24"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right text-right">
-                                @if($r->access == 'edit')
-                                    <div class="dropdown-divider"></div>
-                                    <button data-target="#folderEdit{{ $r->folder->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
-                                        Rename
-                                    </button>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="{{ url('trash/folder/' . $r->folder->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
-                                        Delete
-                                    </a>
-                                @endif
-                            </div>    
-                        </div>
+                        @if($r->access == 'edit')
+                            <div class="dropdown ml-auto">
+                                <a class="d-flex align-items-center text-dark justify-content-end" style="cursor: pointer;" data-toggle="dropdown">
+                                    <i class="fa-solid fa-ellipsis-vertical px-2" style="font-size: 24"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right text-right">
+                                        <div class="dropdown-divider"></div>
+                                        <button data-target="#folderEdit{{ $r->folder->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
+                                            Rename
+                                        </button>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="{{ url('trash/folder/' . $r->folder->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
+                                            Delete
+                                        </a>
+                                </div>    
+                            </div>
+                        @endif
                     </td>
                 </tr>
                 {{-- @include('folder/edit')--}}
@@ -68,12 +67,18 @@
                 <tr>
                     <td>
                         @if($file->getType($r->file->type) == 'image')
-                            <a data-target="#fileView{{ $r->file->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->file->name }}">
+                            <a data-target="#fileView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->file->name }}">
                                 {{-- icon goes here --}}
+                        @elseif($file->getType($r->file->type) == 'video')
+                            <a data-target="#videoView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->file->name }}">
+                        @elseif($file->getType($r->file->type) == 'audio')
+                            <a data-target="#audioView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->file->name }}">
                         @else
-                            <a href="{{ asset('download/' . $r->file->route) }}" class="text-dark" title="{{ $r->file->name }}" target="_blank" download="{{ $r->file->name }}">
+                            <a href="{{ asset('download/' . $r->route) }}" class="text-dark" title="{{ $r->name }}" target="_blank" download="{{ $r->name }}">
                         @endif
+
                             <img src="{{ asset($file->getIcon($r->file->route, $r->file->type)) }}" width="30" height="30" class="mb-1 mr-1 img-cover">
+
                             <strong>
                                 {{ substr($r->file->name, 0, 30) }}
                                 @if (strlen($r->file->name) > 30)
