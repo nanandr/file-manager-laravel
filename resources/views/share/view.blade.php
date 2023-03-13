@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body p-0 py-3 px-3">
-          <img src="{{ asset($file::getIcon($r->file->route, $r->file->type)) }}" class="col-sm-12">
+          <img src="{{ asset($file->getIcon($r->file->route, $r->file->type)) }}" class="col-sm-12">
       </div>
     </div>
   </div>

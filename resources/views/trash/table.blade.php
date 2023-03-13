@@ -38,7 +38,7 @@
                     <td>
                         <a data-target="#fileView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
                             {{-- icon goes here --}}
-                            <img src="{{ asset($file::getIcon($r->route, $r->type)) }}" width="30" height="30" class="mb-1 mr-1 img-cover">
+                            <img src="{{ asset($file->getIcon($r->route, $r->type)) }}" width="30" height="30" class="mb-1 mr-1 img-cover">
                             <strong>
                                 {{ substr($r->name, 0, 30) }}
                                 @if (strlen($r->name) > 30)
