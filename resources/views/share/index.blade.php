@@ -5,7 +5,11 @@
 @endsection
 @section('content')
     <div class="pt-2 col-sm-12 min-vh-100 ">
-        @include('search/share')
+        @if(isset($current))
+            @include('search/shareInFolder')
+        @else
+            @include('search/share')
+        @endif
         @include('component/recent')
         <div>
             <hr>
