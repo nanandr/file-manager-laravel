@@ -12,11 +12,11 @@
                 @foreach($recent as $r)
                     <div class="card card-inline mx-2 shadow-sm shadow-hover">
                         @if($file->getType($r->type) == 'image')
-                            <a data-target="#recentView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark d-flex flex-column" style="padding: 0px" title="{{ $r->name }}">
+                            <a data-target="#fileViewRecent{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark d-flex flex-column" style="padding: 0px" title="{{ $r->name }}">
                         @elseif($file->getType($r->type) == 'video')
-                            <a data-target="#videoView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
+                            <a data-target="#videoViewRecent{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
                         @elseif($file->getType($r->type) == 'audio')
-                            <a data-target="#audioView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
+                            <a data-target="#audioViewRecent{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
                         @else
                             <a href="{{ asset('download/' . $r->route) }}" class="text-dark d-flex flex-column" style="padding: 0px" title="{{ $r->name }}" target="_blank" download="{{ $r->name }}">
                         @endif

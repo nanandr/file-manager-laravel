@@ -37,11 +37,22 @@ class SearchController extends Controller
         }
     }
 
-    public function share(Request $request){
-        $folders = sharedFolder::where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->get();
-        $files = sharedFile::where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->get();
+    // public function share(Request $request){
+    //     $folders = Folder::where('name', 'like', '%' . $request->keyword .'%')->get();
+    //     $files = File::where('name', 'like', '%' . $request->keyword .'%')->get();
+
+    //     $sharedFolders = sharedFolder::where('id_user', Auth::user()->id_user)->->get();
+    //     $sharedFiles = sharedFile::where('id_user', Auth::user()->id_user)->->get();
+    //     $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
+
+    //     return view('share/index', ['folders' => $sharedFolders, 'files' => $sharedFiles, 'recent' => $recent]);
+    // }
+
+    public function trash(Request $request){
+        $folders = Folder::onlyTrashed()->where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->orderBy('name')->get();
+        $files = File::onlyTrashed()->where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->orderBy('name')->get();
         $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
 
-        return view('share/index', ['folders' => $folders, 'files' => $files, 'recent' => $recent]);
+        return view('trash/index', ['folders' => $folders, 'files' => $files, 'recent' => $recent]);
     }
 }

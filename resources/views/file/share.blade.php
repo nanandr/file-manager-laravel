@@ -24,7 +24,7 @@
                 </div>
             </form>
           </div>
-          @if($r->sharedFile->count() > 0)
+          @if($r->sharedFile != null && $r->sharedFile->count() > 0)
             <div class="modal-body p-3">
               <h5>Shared To..</h5>
               @foreach ($r->sharedFile as $t)

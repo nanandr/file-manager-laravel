@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div class="pt-2 col-sm-12 min-vh-100 ">
-        @include('component/search')
+        @include('search/share')
         @include('component/recent')
         <div>
             <hr>

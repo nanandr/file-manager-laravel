@@ -36,7 +36,16 @@
             @foreach ($files as $r)
                 <tr>
                     <td>
-                        <a data-target="#fileView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
+                        @if($file->getType($r->type) == 'image')
+                            <a data-target="#fileView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
+                                {{-- icon goes here --}}
+                        @elseif($file->getType($r->type) == 'video')
+                            <a data-target="#videoView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
+                        @elseif($file->getType($r->type) == 'audio')
+                            <a data-target="#audioView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
+                        @else
+                            <a href="{{ asset('download/' . $r->route) }}" class="text-dark" title="{{ $r->name }}" target="_blank" download="{{ $r->name }}">
+                        @endif
                             {{-- icon goes here --}}
                             <img src="{{ asset($file->getIcon($r->route, $r->type)) }}" width="30" height="30" class="mb-1 mr-1 img-cover">
                             <strong>

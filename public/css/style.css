@@ -77,8 +77,8 @@
     color: white;
 }
 .btn-add-mobile{
-    width: 72;
-    height: 72;
+    width: 48px;
+    height: 48px;
     position: fixed;
     bottom: 24px;
     right: 32px;
@@ -89,6 +89,7 @@
     color: white !important;
     box-sizing: border-box;
     font-size: 16px;
+    padding: 32px;
 }
 
 .container-form{

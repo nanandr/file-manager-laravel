@@ -15,7 +15,7 @@
                         <a href="{{ url('share/folder/' . $parent->route) }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>&ensp;/&ensp;{{ $current->name }}
                     </td>
                 </tr>
-            @elseif(!isset($parent) && !request()->is('share'))
+            @elseif(!isset($parent) && !request()->is('share') && !request()->is('search/share'))
                 <tr>
                     <td colspan="4" class="d-flex bg-white">
                         <a href="{{ url('share') }}" class="d-flex align-items-center"><i class="fa-solid fa-ellipsis" style="font-size: 24"></i></a>&ensp;/&ensp;{{ $current->name }}

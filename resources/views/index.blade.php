@@ -54,9 +54,19 @@
         
         </div>            
     </div>
-    <div class="btn-add-mobile rounded-circle shadow shadow-hover">
-        <a style="text-decoration: none; color: white;">
-            <i class="fa-solid fa-plus" style="font-size: 32"></i>
+    <div class="btn-add-mobile rounded-circle shadow shadow-hover dropleft">
+        <a style="text-decoration: none; color: white; padding: 0px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-plus" style="font-size: 24px"></i>
         </a>
+        <div class="dropdown-menu text-center">
+            <div class="d-flex">
+                <button data-target="#folderModalMobile" type="button" data-toggle="modal" class="dropdown-item">
+                    Create Folder
+                </button>
+                <button data-target="#fileModalMobile" type="button" data-toggle="modal" class="dropdown-item">
+                    Upload File
+                </button>
+            </div>
+        </div>
     </div>
 @endsection
