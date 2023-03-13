@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Auth;
+use App\Models\File;
+use App\Models\Folder;
+use App\Models\sharedFile;
+use App\Models\sharedFolder;
+
+class SearchController extends Controller
+{
+    public function index(Request $request){
+        $folders = Folder::where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->whereNull('parent')->orderBy('name')->get();
+        $files = File::where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->whereNull('parent')->orderBy('name')->get();
+        $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
+
+        return view('index', ['folders' => $folders, 'files' => $files, 'recent' => $recent]);
+    }
+
+    public function inFolder($route, Request $request){
+        $id = Folder::where('route', $route)->first();
+        $parent = Folder::where('id_folder', $id->parent)->first();
+        if($id->id_user != Auth::user()->id_user){
+            return redirect('home');
+        }
+        else{
+            //no where('id_user', Auth::user()->id_user) so the owner could see people uploading in shared files
+            $folders = Folder::where('parent', $id->id_folder)->where('name', 'like', '%' . $request->keyword .'%')->orderBy('name')->get();
+            $files = File::where('parent', $id->id_folder)->where('name', 'like', '%' . $request->keyword .'%')->orderBy('name')->get();
+            $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
+    
+            return view('index', ['folders' => $folders, 'files' => $files, 'recent' => $recent, 'parent' => $parent, 'current' => $id]);
+        }
+    }
+
+    public function share(Request $request){
+        $folders = sharedFolder::where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->get();
+        $files = sharedFile::where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->get();
+        $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
+
+        return view('share/index', ['folders' => $folders, 'files' => $files, 'recent' => $recent]);
+    }
+}

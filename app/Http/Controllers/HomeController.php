@@ -83,13 +83,4 @@ class HomeController extends Controller
     public function view($route){
         return response()->file('uploads/'.$id);
     }
-
-    public function search(Request $request){
-        $folders = Folder::where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->whereNull('parent')->orderBy('name')->get();
-        $files = File::where('id_user', Auth::user()->id_user)->where('name', 'like', '%' . $request->keyword .'%')->whereNull('parent')->orderBy('name')->get();
-        $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
-
-        return view('index', ['folders' => $folders, 'files' => $files, 'recent' => $recent]);
-    }
-
 }

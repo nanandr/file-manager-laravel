@@ -16,9 +16,9 @@
           {{-- other action for uploading shared files --}}
           @endif
               {{ csrf_field() }}
-              <label id="clear" for="file" class="col-sm-12 p-0 mb-2 d-inline-block align-top" style="cursor: pointer">
+              {{-- <label id="clear" for="file" class="col-sm-12 p-0 mb-2 d-inline-block align-top" style="cursor: pointer">
                 <img id="preview-file-before-upload" src="{{ asset('img/icon_form.png') }}" class="col-sm-12">
-              </label>
+              </label> --}}
               <div class="col-sm-12 d-flex justify-content-between align-items-center">
                 <input type="file" name="file" id="file">
                 <span class="input-group-btn">

@@ -27,11 +27,11 @@ Route::middleware('auth')->group(function(){
     Route::get('folder', 'LoginController@authenticated');
     Route::get('logout', 'LoginController@logout')->name('logout');
 
-    Route::get('search', 'HomeController@search');
-    Route::get('search/{route}', 'HomeController@searchInFolder');
-    // Route::get('share/search', 'HomeController@shareSearch');
-    // Route::get('share/{route}/search', 'HomeController@shareSearchInFolder');
-    // Route::get('trash/search', 'HomeController@trashSearch');
+    Route::get('search', 'SearchController@index');
+    Route::get('search/folder/{route}', 'SearchController@inFolder');
+    Route::get('search/share', 'SearchController@share');
+    Route::get('search/share/{route}', 'SearchController@shareInFolder');
+    Route::get('search/trash', 'SearchController@trash');
 
     Route::get('share', 'HomeController@share')->name('share');
     

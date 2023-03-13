@@ -5,7 +5,11 @@
 @endsection
 @section('content')
     <div class="pt-2 col-sm-12 min-vh-100 ">
-        @include('component/search')
+        @if(isset($current))
+            @include('search/inFolder')
+        @else
+            @include('search/index')
+        @endif
         @include('component/recent')
         <div>
             <hr>
