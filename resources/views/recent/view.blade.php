@@ -25,7 +25,7 @@
       </div>
       <div class="modal-body p-0 py-3 px-3 text-center">
         <video id="video{{ $r->id_file }}" class="col-sm-12" controls="true">
-          <source src="{{ asset('uploads/'.$r->route) }}?recent=1" type="video/{{ $r->type }}" class="col-sm-12">
+          <source src="{{ asset('uploads/'.$r->route) }}?recent={{$r->id_file}}" type="video/{{ $r->type }}" class="col-sm-12">
         </video>
       </div>
     </div>
