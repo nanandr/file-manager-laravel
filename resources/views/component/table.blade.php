@@ -50,6 +50,9 @@
                                     Share
                                 </button>
                                 <div class="dropdown-divider"></div>
+                                <button data-target="#folderDesc{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
+                                    Description
+                                </button>
                                 <button data-target="#folderEdit{{ $r->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Rename
                                 </button>
@@ -61,6 +64,7 @@
                         </div>
                     </td>
                 </tr>
+                @include('folder/desc') 
                 @include('folder/edit')       
                 @include('folder/share')                       
             @endforeach

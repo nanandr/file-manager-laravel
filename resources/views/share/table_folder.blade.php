@@ -46,19 +46,23 @@
                                 <i class="fa-solid fa-ellipsis-vertical px-2" style="font-size: 24"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right text-right">
-                                <button data-target="#folderEdit{{ $r->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
-                                    Rename
+                                <button data-target="#folderDesc{{ $r->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
+                                    Description
                                 </button>
-                                <div class="dropdown-divider"></div>
-                                <a href="{{ url('trash/folder/' . $r->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
-                                    Delete
-                                </a>
+                                @if($r->access == 'edit')
+                                    <button data-target="#folderEdit{{ $r->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
+                                        Rename
+                                    </button>
+                                    <a href="{{ url('trash/folder/' . $r->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
+                                        Delete
+                                    </a>
+                                @endif
                             </div>    
                         </div>
                     </td>
                 </tr>
-                @include('folder/edit')       
-                @include('folder/share')                       
+                @include('folder/desc') 
+                @include('folder/desc')                      
             @endforeach
 
             {{-- foreach file --}}
@@ -101,13 +105,15 @@
                                 <button data-target="#fileDesc{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Description
                                 </button>
-                                <div class="dropdown-divider"></div>
-                                <button data-target="#fileEdit{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
-                                    Rename
-                                </button>
-                                <a href="{{ url('trash/file/' . $r->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
-                                    Delete
-                                </a>
+                                @if($r->access == 'edit')
+                                    <div class="dropdown-divider"></div>
+                                    <button data-target="#fileEdit{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
+                                        Rename
+                                    </button>
+                                    <a href="{{ url('trash/file/' . $r->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
+                                        Delete
+                                    </a>
+                                @endif
                             </div>    
                         </div>
                     </td>

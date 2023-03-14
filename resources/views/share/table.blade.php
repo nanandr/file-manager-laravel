@@ -40,26 +40,30 @@
                     <td>{{  date('H:i:s, M d Y', strtotime($r->folder->updated_at)) }}</td>
                     <td>Folder</td>
                     <td class="d-flex">
-                        @if($r->access == 'edit')
-                            <div class="dropdown ml-auto">
-                                <a class="d-flex align-items-center text-dark justify-content-end" style="cursor: pointer;" data-toggle="dropdown">
-                                    <i class="fa-solid fa-ellipsis-vertical px-2" style="font-size: 24"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right text-right">
-                                        <div class="dropdown-divider"></div>
-                                        <button data-target="#folderEdit{{ $r->folder->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
-                                            Rename
-                                        </button>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="{{ url('trash/folder/' . $r->folder->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
-                                            Delete
-                                        </a>
-                                </div>    
-                            </div>
-                        @endif
+                        <div class="dropdown ml-auto">
+                            <a class="d-flex align-items-center text-dark justify-content-end" style="cursor: pointer;" data-toggle="dropdown">
+                                <i class="fa-solid fa-ellipsis-vertical px-2" style="font-size: 24"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right text-right">
+                                <button data-target="#folderDescShare{{ $r->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
+                                    Description
+                                </button>
+                                @if($r->access == 'edit')
+                                    <button data-target="#folderEdit{{ $r->folder->id_folder }}" type="button" data-toggle="modal" class="dropdown-item">
+                                        Rename
+                                    </button>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="{{ url('trash/folder/' . $r->folder->route) }}" class="dropdown-item text-danger" onclick="return confirm('Are you sure?')">
+                                        Delete
+                                    </a>
+                                @endif
+                            </div>    
+                        </div>
                     </td>
                 </tr>
-                {{-- @include('folder/edit')--}}
+                @include('folder/desc')
+                @include('folder/shared_desc')
+                @include('folder/edit')
             @endforeach
 
             {{-- foreach file --}}
