@@ -37,16 +37,17 @@ class SearchController extends Controller
         }
     }
 
-    // public function share(Request $request){
-    //     $folders = Folder::where('name', 'like', '%' . $request->keyword .'%')->get();
-    //     $files = File::where('name', 'like', '%' . $request->keyword .'%')->get();
+    public function share(Request $request){
+        // $folders = Folder::where('name', 'like', '%' . $request->keyword .'%')->get();
+        // $files = File::where('name', 'like', '%' . $request->keyword .'%')->get();
 
-    //     $sharedFolders = sharedFolder::where('id_user', Auth::user()->id_user)->->get();
-    //     $sharedFiles = sharedFile::where('id_user', Auth::user()->id_user)->->get();
-    //     $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
+        $sharedFolders = sharedFolder::where('id_user', Auth::user()->id_user)->whereHas('folder', function($query) use($request) { $query->where('name', 'like', '%'.$request->keyword.'%'); })->get();
+        $sharedFiles = sharedFile::where('id_user', Auth::user()->id_user)->whereHas('file', function($query) use($request) { $query->where('name', 'like', '%'.$request->keyword.'%'); })->get();
 
-    //     return view('share/index', ['folders' => $sharedFolders, 'files' => $sharedFiles, 'recent' => $recent]);
-    // }
+        $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
+
+        return view('share/index', ['folders' => $sharedFolders, 'files' => $sharedFiles, 'recent' => $recent]);
+    }
 
     public function shareInFolder(Request $request, $route){
         $id = Folder::where('route', $route)->first();

@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('search', 'SearchController@index');
     Route::get('folder/{route}/search', 'SearchController@inFolder');
-    Route::get('share/search', 'SearchController@share');
+    Route::get('search/share', 'SearchController@share');
     Route::get('share/{route}/search', 'SearchController@shareInFolder');
     Route::get('trash/search', 'SearchController@trash');
 

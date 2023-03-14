@@ -61,8 +61,8 @@
                         </div>
                     </td>
                 </tr>
-                @include('folder/desc') 
-                @include('folder/desc')                      
+                @include('folder/desc')       
+                @include('folder/edit')                     
             @endforeach
 
             {{-- foreach file --}}
@@ -105,7 +105,7 @@
                                 <button data-target="#fileDesc{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
                                     Description
                                 </button>
-                                @if($r->access == 'edit')
+                                @if($r->access == 'edit' || $r->id_user == Auth::user()->id_user )
                                     <div class="dropdown-divider"></div>
                                     <button data-target="#fileEdit{{ $r->id_file }}" type="button" data-toggle="modal" class="dropdown-item">
                                         Rename

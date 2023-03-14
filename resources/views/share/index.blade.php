@@ -58,7 +58,7 @@
                 </div>
             </div>
             <hr>
-            @if(request()->is('share'))
+            @if(request()->is('share') || !isset($current))
                 @include('share/table')
             @else
                 @include('share/table_folder')
