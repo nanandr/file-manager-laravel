@@ -48,35 +48,47 @@ class HomeController extends Controller
     }
 
     public function shareInFolder(Request $request, $route){
-        $id = Folder::where('route', $route)->first();
-        $access = sharedFolder::where('id_folder', $id->id_folder)->where('id_user', Auth::user()->id_user)->first();
-        $parent = Folder::where('id_folder', $id->parent)->first();
-
-        if(isset($access)){
-            $request->session()->put('access',$access->access);
-        }
-
-        $folders = Folder::where('parent', $id->id_folder)->orderBy('name')->get();
-        $files = File::where('parent', $id->id_folder)->orderBy('name')->get();
-        
-        $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
-
-        return view('share/index', ['folders' => $folders, 'files' => $files, 'recent' => $recent, 'parent' => $parent, 'current' => $id, 'access' => $access, 'request' => $request]);
-    }
-
-    public function inFolder($route){
-        $id = Folder::where('route', $route)->first();
-        $parent = Folder::where('id_folder', $id->parent)->first();
-        if($id->id_user != Auth::user()->id_user){
-            return redirect('home');
-        }
-        else{
-            //no where('id_user', Auth::user()->id_user) so the owner could see people uploading in shared files
+        if(Folder::where('route', $route)->count() > 0){
+            $id = Folder::where('route', $route)->first();
+            $access = sharedFolder::where('id_folder', $id->id_folder)->where('id_user', Auth::user()->id_user)->first();
+            $parent = Folder::where('id_folder', $id->parent)->first();
+    
+            if(isset($access)){
+                $request->session()->put('access',$access->access);
+            }
+    
             $folders = Folder::where('parent', $id->id_folder)->orderBy('name')->get();
             $files = File::where('parent', $id->id_folder)->orderBy('name')->get();
+            
             $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
-    
-            return view('index', ['folders' => $folders, 'files' => $files, 'recent' => $recent, 'parent' => $parent, 'current' => $id]);
+
+            return view('share/index', ['folders' => $folders, 'files' => $files, 'recent' => $recent, 'parent' => $parent, 'current' => $id, 'access' => $access, 'request' => $request]);
+        
+        }
+        else{
+            return abort(404);
+        }
+    }
+
+
+    public function inFolder($route){
+        if(Folder::where('route', $route)->count() > 0){
+            $id = Folder::where('route', $route)->first();
+            $parent = Folder::where('id_folder', $id->parent)->first();
+            if($id->id_user != Auth::user()->id_user){
+                return abort(403, 'You have no access to this folder');
+            }
+            else{
+                //no where('id_user', Auth::user()->id_user) so the owner could see people uploading in shared files
+                $folders = Folder::where('parent', $id->id_folder)->orderBy('name')->get();
+                $files = File::where('parent', $id->id_folder)->orderBy('name')->get();
+                $recent = File::where('id_user', Auth::user()->id_user)->where('hide','false')->orderBy('updated_at', 'DESC')->limit(10)->get();
+        
+                return view('index', ['folders' => $folders, 'files' => $files, 'recent' => $recent, 'parent' => $parent, 'current' => $id]);
+            }
+        }
+        else{
+            return abort(404);
         }
     }
 

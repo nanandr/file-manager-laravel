@@ -99,3 +99,7 @@
 .img-cover{
     object-fit: cover;
 }
+
+.error-title{
+    font-size: 240px;
+}
