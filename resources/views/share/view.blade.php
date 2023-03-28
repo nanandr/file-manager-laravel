@@ -19,7 +19,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">{{ substr($r->file->name, 0, 60) }}@if (strlen($r->file->name) > 60)...@endif</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" tabindex="-1" onclick="document.getElementById('video{{ $r->file->id_file }}').pause();">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" tabindex="-1" onclick="pauseFile('video{{ $r->file->id_file }}')">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -37,7 +37,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">{{ substr($r->file->name, 0, 60) }}@if (strlen($r->file->name) > 60)...@endif</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" tabindex="-1" onclick="document.getElementById('audio{{ $r->file->id_file }}').pause();">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" tabindex="-1" onclick="pauseFile('audio{{ $r->file->id_file }}')">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

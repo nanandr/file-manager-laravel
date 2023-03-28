@@ -76,3 +76,7 @@ dropContainer.ondrop = function(evt) {
 
   evt.preventDefault();
 };
+
+function pauseFile(id){
+  document.getElementById(id).pause();
+}

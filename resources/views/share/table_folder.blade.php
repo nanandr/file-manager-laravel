@@ -72,7 +72,7 @@
                         @if($file->getType($r->type) == 'image')
                             <a data-target="#fileView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
                                 {{-- icon goes here --}}
-                        @elseif($file->getType($r->file->type) == 'video')
+                        @elseif($file->getType($r->type) == 'video')
                             <a data-target="#videoView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">
                         @elseif($file->getType($r->type) == 'audio')
                             <a data-target="#audioView{{ $r->id_file }}" type="button" data-toggle="modal" class="text-dark" title="{{ $r->name }}">

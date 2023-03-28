@@ -63,7 +63,7 @@
                 </tr>
                 @include('folder/desc')
                 @include('folder/shared_desc')
-                @include('folder/edit')
+                @include('share/edit_folder')
             @endforeach
 
             {{-- foreach file --}}
